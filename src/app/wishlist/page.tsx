@@ -127,7 +127,7 @@ const Wishlist = () => {
                 <div className="container">
                     <div className="list-product-block relative">
                         <div className="filter-heading flex items-center justify-between gap-5 flex-wrap">
-                            <div className="left flex has-line items-center flex-wrap gap-5">
+                            {/* <div className="left flex has-line items-center flex-wrap gap-5">
                                 <div className="choose-layout flex items-center gap-2">
                                     <div
                                         className={`item three-col p-2 border border-line rounded flex items-center justify-center cursor-pointer ${layoutCol === 3 ? 'active' : ''}`}
@@ -163,7 +163,7 @@ const Wishlist = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="right flex items-center gap-3">
                                 <div className="select-block filter-type relative">
                                     <select

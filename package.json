@@ -11,6 +11,7 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.0.14",
     "axios": "^1.7.7",
+    "anvogue": "file:",
     "framer-motion": "^10.17.4",
     "jsonwebtoken": "^9.0.2",
     "next": "14.0.3",

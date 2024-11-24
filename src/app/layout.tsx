@@ -16,9 +16,9 @@ const serverTimeLeft: CountdownTimeType = countdownTime();
 const instrument = Instrument_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Anvogue",
-  description: "Multipurpose eCommerce Template",
-};
+  title: 'Applemore | Top Apple Products Dealer in Sri Lanka',
+  description: 'Top Apple Products Dealer in Sri Lanka',
+}
 
 export default function RootLayout({
   children,

@@ -15,7 +15,6 @@ import BestSeller from '@/components/Marketplace/BestSeller'
 import BannerBelow from '@/components/Marketplace/BannerBelow'
 import TopProduct from '@/components/Marketplace/TopProduct'
 import Recommend from '@/components/Marketplace/Recommend'
-import NewsInsight from '@/components/Home3/NewsInsight'
 
 export default function HomeMarketplace() {
     return (
@@ -32,7 +31,6 @@ export default function HomeMarketplace() {
             <BannerBelow />
             <TopProduct />
             <Recommend />
-            <NewsInsight data={blogData} start={18} limit={21} />
             <Benefit props='md:py-[60px] py-10 border-b border-line' />
             <Brand />
             <Footer />
