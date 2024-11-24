@@ -11,6 +11,9 @@ import productData from '@/data/Product.json'
 import Product from '@/components/Product/Product'
 import HandlePagination from '@/components/Other/HandlePagination'
 import * as Icon from "@phosphor-icons/react/dist/ssr";
+import ProductCategories from './ProductCategories'
+import PriceFilter from './PriceFilter'
+
 
 const SearchResult = () => {
     const [searchKeyword, setSearchKeyword] = useState<string>('');
@@ -89,11 +92,28 @@ const SearchResult = () => {
 
     return (
         <>
-            <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
-            <div id="header" className='relative w-full'>
+         <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
+          
+         <div id="header" className='relative w-full'>
                 <MenuOne props="bg-transparent" />
                 <Breadcrumb heading='Search Result' subHeading='Search Result' />
             </div>
+        <div className='flex gap-10'>
+         <div className='pt-60 border-x-2 border-y-2  border rounded border-gray-300 '>
+        <ProductCategories/>
+        <br/>
+        <hr></hr>
+        <br/>
+        
+         <PriceFilter onFilter={function (range: [number, number]): void {
+                            throw new Error('Function not implemented.')
+                        } }/>
+        
+        </div>
+        
+        <div>
+      
+          
             <div className="shop-product breadcrumb1 lg:py-20 md:py-14 py-10">
                 <div className="container">
                     <div className="heading flex flex-col items-center">
@@ -118,7 +138,7 @@ const SearchResult = () => {
                         </div>
                     </div>
                     <div className="list-product-block relative md:pt-10 pt-6">
-                        <div className="heading6">product Search: {query}</div>
+                        <div className="heading6 ml-14">product Search: {query}</div>
                         <div className={`list-product hide-product-sold grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 sm:gap-[30px] gap-[20px] mt-5`}>
                             {currentProducts.map((item) => (
                                 item.id === 'no-data' ? (
@@ -137,6 +157,9 @@ const SearchResult = () => {
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
+       
             <Footer />
         </>
     )
