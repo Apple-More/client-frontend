@@ -12,9 +12,9 @@ const PriceFilter = ({ onFilter }: { onFilter: (range: [number, number]) => void
     <div className=" ">
       <h2 className="font-bold text-lg mb-4">FILTER BY PRICE</h2>
       <ReactSlider
-  className="h-4 bg-gray-300 rounded"
-  thumbClassName="h-4 w-4 bg-blue-500 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300"
-  trackClassName="bg-blue-500 h-4 rounded"
+  className="h-2 bg-secondary rounded"
+  thumbClassName="h-6 w-6 bg-blue rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300 transform -translate-y-2"
+  trackClassName="bg-blue-500 h-2 rounded"
   defaultValue={[129900, 689900]}
   min={100000}
   max={700000}
@@ -24,12 +24,13 @@ const PriceFilter = ({ onFilter }: { onFilter: (range: [number, number]) => void
 />
 
 
+
       <p className="text-gray-700 mt-4">
         Price: LKR {priceRange[0].toLocaleString()} — LKR {priceRange[1].toLocaleString()}
       </p>
       <button
         onClick={handleFilter}
-        className="mt-4 px-4 py-2 bg-blue-500 text-black font-bold rounded hover:bg-blue-600"
+        className="mt-4 px-4 py-2 bg-purple text-white font-bold rounded hover:bg-blue-600"
       >
         FILTER
       </button>
