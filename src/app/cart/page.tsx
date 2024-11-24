@@ -14,7 +14,7 @@ import OrderSummary from '@/components/OrderSummary/OrderSummary'
 import OrderDetails from '@/components/OrderDetails/OrderDetails'
 
 const Cart = () => {
-    // const [timeLeft, setTimeLeft] = useState(countdownTime());
+    const [timeLeft, setTimeLeft] = useState(countdownTime());
     const router = useRouter()
 
     useEffect(() => {
