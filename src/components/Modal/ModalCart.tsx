@@ -47,13 +47,13 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
 
     return (
         <>
-            <div className={`modal-cart-block`} onClick={closeModalCart}>
+            <div className={`modal-cart-block `} onClick={closeModalCart}>
                 <div
-                    className={`modal-cart-main flex ${isModalOpen ? 'open' : ''}`}
+                    className={`modal-cart-main flex ${isModalOpen ? 'open' : ''} `}
                     onClick={(e) => { e.stopPropagation() }}
                 >
-                    <div className="left w-1/2 border-r border-line py-6 max-md:hidden">
-                        <div className="heading5 px-6 pb-3">You May Also Like</div>
+                    {/* <div className="left w-1/2 border-r border-line py-6 max-md:hidden">
+                        <div className="heading5 px-6 pb-3">You Mayyy Also Like</div>
                         <div className="list px-6">
                             {productData.slice(0, 4).map((product) => (
                                 <div key={product.id} className='item py-5 flex items-center justify-between gap-3 border-b border-line'>
@@ -87,10 +87,10 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                 </div>
                             ))}
                         </div>
-                    </div>
-                    <div className="right cart-block md:w-1/2 w-full py-6 relative overflow-hidden">
+                    </div> */}
+                    <div className="right cart-block w-full py-6 relative overflow-hidden">
                         <div className="heading px-6 pb-3 flex items-center justify-between relative">
-                            <div className="heading5">Shopping Cart</div>
+                            <div className="heading5"> Cart  </div>
                             <div
                                 className="close-btn absolute right-6 top-0 w-6 h-6 rounded-full bg-surface flex items-center justify-center duration-300 cursor-pointer hover:bg-black hover:text-white"
                                 onClick={closeModalCart}
@@ -98,24 +98,24 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                 <Icon.X size={14} />
                             </div>
                         </div>
-                        <div className="time px-6">
+                        {/* <div className="time px-6">
                             <div className=" flex items-center gap-3 px-5 py-3 bg-green rounded-lg">
                                 <p className='text-3xl'>🔥</p>
                                 <div className="caption1">Your cart will expire in <span className='text-red caption1 font-semibold'>{timeLeft.minutes}:
                                     {timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}</span> minutes!<br />
                                     Please checkout now before your items sell out!</div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="heading banner mt-3 px-6">
-                            <div className="text">Buy <span className="text-button"> $<span className="more-price">{moneyForFreeship - totalCart > 0 ? (<>{moneyForFreeship - totalCart}</>) : (0)}</span>.00 </span>
+                            {/* <div className="text">Buy <span className="text-button"> $<span className="more-price">{moneyForFreeship - totalCart > 0 ? (<>{moneyForFreeship - totalCart}</>) : (0)}</span>.00 </span>
                                 <span>more to get </span>
-                                <span className="text-button">freeship</span></div>
-                            <div className="tow-bar-block mt-3">
+                                <span className="text-button">freeship</span></div> */}
+                            {/* <div className="tow-bar-block mt-3">
                                 <div
                                     className="progress-line"
                                     style={{ width: totalCart <= moneyForFreeship ? `${(totalCart / moneyForFreeship) * 100}%` : `100%` }}
                                 ></div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="list-product px-6">
                             {cartState.cartArray.map((product) => (
@@ -167,13 +167,13 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                     <Icon.Truck className='text-xl' />
                                     <div className="caption1">Shipping</div>
                                 </div>
-                                <div
+                                {/* <div
                                     className="item flex items-center gap-3 cursor-pointer"
                                     onClick={() => handleActiveTab('coupon')}
                                 >
                                     <Icon.Tag className='text-xl' />
                                     <div className="caption1">Coupon</div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="flex items-center justify-between pt-6 px-6">
                                 <div className="heading5">Subtotal</div>
@@ -221,7 +221,7 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                     </div>
                                 </div>
                                 <div className="form pt-4 px-6">
-                                    <div className="">
+                                    {/* <div className="">
                                         <label htmlFor='select-country' className="caption1 text-secondary">Country/region</label>
                                         <div className="select-block relative mt-2">
                                             <select
@@ -238,9 +238,9 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                             </select>
                                             <Icon.CaretDown size={12} className='absolute top-1/2 -translate-y-1/2 md:right-5 right-2' />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="mt-3">
-                                        <label htmlFor='select-state' className="caption1 text-secondary">State</label>
+                                        <label htmlFor='select-state' className="caption1 text-secondary">Province</label>
                                         <div className="select-block relative mt-2">
                                             <select
                                                 id="select-state"
@@ -248,11 +248,11 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                                 className='w-full py-3 pl-5 rounded-xl bg-white border border-line'
                                                 defaultValue={'State'}
                                             >
-                                                <option value="State" disabled>State</option>
+                                                {/* <option value="State" disabled>State</option>
                                                 <option value="Paris">Paris</option>
                                                 <option value="Madrid">Madrid</option>
                                                 <option value="London">London</option>
-                                                <option value="New York">New York</option>
+                                                <option value="New York">New York</option> */}
                                             </select>
                                             <Icon.CaretDown size={12} className='absolute top-1/2 -translate-y-1/2 md:right-5 right-2' />
                                         </div>
@@ -269,12 +269,12 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                             </div>
                             <div className={`tab-item note-block ${activeTab === 'coupon' ? 'active' : ''}`}>
                                 <div className="px-6 py-4 border-b border-line">
-                                    <div className="item flex items-center gap-3 cursor-pointer">
+                                    {/* <div className="item flex items-center gap-3 cursor-pointer">
                                         <Icon.Tag className='text-xl' />
                                         <div className="caption1">Add A Coupon Code</div>
-                                    </div>
+                                    </div> */}
                                 </div>
-                                <div className="form pt-4 px-6">
+                                {/* <div className="form pt-4 px-6">
                                     <div className="">
                                         <label htmlFor='select-discount' className="caption1 text-secondary">Enter Code</label>
                                         <input className="border-line px-5 py-3 w-full rounded-xl mt-3" id="select-discount" type="text" placeholder="Discount code" />
@@ -283,7 +283,7 @@ const ModalCart = ({ serverTimeLeft }: { serverTimeLeft: CountdownTimeType }) =>
                                 <div className="block-button text-center pt-4 px-6 pb-6">
                                     <div className='button-main w-full text-center' onClick={() => setActiveTab('')}>Apply</div>
                                     <div onClick={() => setActiveTab('')} className="text-button-uppercase mt-4 text-center has-line-before cursor-pointer inline-block">Cancel</div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
