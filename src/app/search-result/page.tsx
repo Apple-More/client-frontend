@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import TopNavOne from '@/components/Header/TopNav/TopNavOne';
 import MenuOne from '@/components/Header/Menu/MenuOne';
@@ -11,10 +11,13 @@ import Product from '@/components/Product/Product';
 import HandlePagination from '@/components/Other/HandlePagination';
 import ProductCategories from './ProductCategories';
 import PriceFilter from './PriceFilter';
+import { getProducts } from "../../services/ProductService";
+
 
 const SearchResult = () => {
     const [searchKeyword, setSearchKeyword] = useState<string>('');
     const [currentPage, setCurrentPage] = useState(0);
+    const [products, setProducts] = useState([]);
     const productsPerPage = 8;
     const offset = currentPage * productsPerPage;
 
@@ -66,6 +69,25 @@ const SearchResult = () => {
     const handlePageChange = (selected: number) => {
         setCurrentPage(selected);
     };
+
+
+    const fetchProducts = async () => {
+        try {
+            const response = await getProducts();
+
+            const products = response.data;
+
+            console.log(products);
+
+            setProducts(products);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchProducts();
+    }, [])
 
     return (
         <div>
@@ -136,14 +158,9 @@ const SearchResult = () => {
                             <div className="list-product-block relative md:pt-10 pt-6">
                                 <div className="heading6 ml-14">Product Search: {query}</div>
                                 <div className="list-product grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 sm:gap-[30px] gap-[20px] mt-5">
-                                    {currentProducts.map((item) =>
-                                        item.id === 'no-data' ? (
-                                            <div key={item.id} className="no-data-product">
-                                                No products match the selected criteria.
-                                            </div>
-                                        ) : (
-                                            <Product key={item.id} data={item} type="grid" />
-                                        )
+                                    {products.map((item, index) =>
+                                            <Product key={index} data={item} type="grid" />
+
                                     )}
                                 </div>
 

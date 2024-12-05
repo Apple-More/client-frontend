@@ -38,13 +38,6 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
     setActiveSize(item);
   };
 
-
-
-  
-
- 
-
-
   const handleDetailProduct = (productId: string) => {
     // redirect to shop with category selected
     router.push(`/product/default?id=${productId}`);
@@ -63,56 +56,32 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
           >
             <div className="product-thumb bg-white relative overflow-hidden rounded-2xl">
               <div className="product-img w-[200px] h-[200px] aspect-[3/4] ">
-                {activeColor ? (
-                  <>
-                    {
-                      <Image
+                <Image
                         src={
-                          data.variation.find(
-                            (item) => item.color === activeColor
-                          )?.image ?? ""
+                           data.images[0].imageUrl
                         }
                         width={180}
                         height={180}
                         alt={data.name}
                         priority={true}
                         className="w-full h-full object-cover duration-700"
-                      />
-                    }
-                  </>
-                ) : (
-                  <>
-                    {data.thumbImage.map((img, index) => (
-                      <Image
-                        key={index}
-                        src={img}
-                        width={180}
-                        height={180}
-                        priority={true}
-                        alt={data.name}
-                        className="w-full h-full object-cover duration-700"
-                      />
-                    ))}
-                  </>
-                )}
+                 />
               </div>
 
               <div className="list-action-icon flex items-center justify-center gap-2 absolute w-full bottom-3 z-[1] lg:hidden"></div>
             </div>
             <div className="product-infor mt-4 lg:mb-7">
               <div className="product-sold sm:pb-4 pb-2">
-                <div className="progress bg-line h-1.5 w-full rounded-full overflow-hidden relative">
-                
-                </div>
+    
                 <div className="flex items-center justify-between gap-3 gap-y-1 flex-wrap mt-2"></div>
               </div>
               <div className="product-name text-title duration-300">
-                {data.name}
+                {data.productName}
               </div>
             </div>
 
             <div className="product-price-block flex items-center gap-2 flex-wrap mt-1 duration-300 relative z-[1]">
-              <div className="product-price text-title">${data.price}.00</div>
+              <div className="product-price text-title">Rs. 100</div>
             </div>
           </div>
         </div>
