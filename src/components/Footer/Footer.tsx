@@ -22,8 +22,8 @@ const Footer = () => {
                                     </div>
                                     <div className="flex flex-col ">
                                         <span className=''>hi.applemore@gmail.com</span>
-                                        <span className='mt-3'>1-333-345-6868</span>
-                                        <span className='mt-3 pt-px'>549 Oak St.Crystal Lake, IL 60014</span>
+                                        <span className='mt-3'>+94 11 234 5678</span>
+                                        <span className='mt-3 pt-px'>No. 23, Flower Road, Colombo 07, Sri Lanka.</span>
                                     </div>
                                 </div>
                             </div>

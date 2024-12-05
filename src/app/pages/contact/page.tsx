@@ -39,16 +39,16 @@ const ContactUs = () => {
                         </div>
                         <div className="right lg:w-1/4 lg:pl-4">
                             <div className="item">
-                                <div className="heading4">Our Store</div>
-                                <p className="mt-3">2163 Phillips Gap Rd, West Jefferson, North Carolina, United States</p>
-                                <p className="mt-3">Phone: <span className='whitespace-nowrap'>+1 666 8888</span></p>
-                                <p className="mt-1">Email: <span className='whitespace-nowrap'>hi.avitex@gmail.com</span></p>
+                                <div className="heading4">Our Head Store</div>
+                                <p className="mt-3">No. 23, Flower Road, Colombo 07, Sri Lanka.</p>
+                                <p className="mt-3">Phone: <span className='whitespace-nowrap'>+94 11 234 5678</span></p>
+                                <p className="mt-1">Email: <span className='whitespace-nowrap'>hi.applemore.colombo@gmail.com</span></p>
                             </div>
                             <div className="item mt-10">
                                 <div className="heading4">Open Hours</div>
-                                <p className="mt-3">Mon - Fri: <span className='whitespace-nowrap'>7:30am - 8:00pm PST</span></p>
-                                <p className="mt-3">Saturday: <span className='whitespace-nowrap'>8:00am - 6:00pm PST</span></p>
-                                <p className="mt-3">Sunday: <span className='whitespace-nowrap'>9:00am - 5:00pm PST</span></p>
+                                <p className="mt-3">Mon - Fri: <span className='whitespace-nowrap'>9:00am - 8:00pm IST</span></p>
+                                <p className="mt-3">Saturday: <span className='whitespace-nowrap'>10:00am - 6:00pm IST</span></p>
+                                <p className="mt-3">Sunday: <span className='whitespace-nowrap'>10:00am - 6:00pm IST</span></p>
                             </div>
                         </div>
                     </div>
