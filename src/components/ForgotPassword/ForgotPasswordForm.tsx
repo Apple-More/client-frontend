@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { forgotPassword } from "@/services/PasswordChangeServices";
+import { toast } from "react-toastify";
 
 const ForgotPasswordForm = () => {
   const router = useRouter();
@@ -8,7 +10,18 @@ const ForgotPasswordForm = () => {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/otp-verification");
+    try {
+      localStorage.setItem("userEmail", userEmail);
+      const response = await forgotPassword(userEmail);
+      if (response.status === 1) {
+        toast.success("Verificatiion code sent to your Email");
+        router.push("/otp-verification");
+      } else {
+        toast.error("User not Found");
+      }
+    } catch (error) {
+      toast.error(`Error: ${error}`);
+    }
   };
   return (
     <>

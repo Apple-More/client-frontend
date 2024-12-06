@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-
+import { useAuth } from "@/context/AuthContext";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 import { addShippingAddress } from "@/services/ShippingAddressServices";
+import { toast } from "react-toastify";
 
 interface ShippingAddressFormProps {
   activeAddress: string | null | undefined;
@@ -18,26 +19,28 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
   setActiveAddress,
   onAction,
 }) => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
+    addressId: "",
     addressNo: "",
+    addressLine1: "",
+    addressLine2: "",
     street: "",
     city: "",
     province: "",
     country: "",
-    zip: "",
+    zipCode: "",
     phone: "",
-    email: "",
   });
 
   const handleAddShippingAddress = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     try {
-      await addShippingAddress(formData);
+      await addShippingAddress(user?.customerId, formData);
+      toast.success("Shipping address added successfully");
     } catch (error) {
+      toast.error("Failed to add shipping address");
       console.error("Failed to add shipping address:", error);
     }
   };
@@ -68,7 +71,7 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
           }`}
         >
           <div className="grid sm:grid-cols-2 gap-4 gap-y-5 mt-5">
-            <div className="first-name">
+            {/* <div className="first-name">
               <label
                 htmlFor="shippingFirstName"
                 className="caption1 capitalize"
@@ -96,21 +99,46 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
                 value={formData.lastName}
                 onChange={handleInputChange}
               />
-            </div>
+            </div> */}
             <div className="company">
-              <label htmlFor="shippingCompany" className="caption1 capitalize">
+              <label htmlFor="addressNo" className="caption1 capitalize">
                 Address No <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingCompany"
+                id="addressNo"
                 type="text"
                 required
                 value={formData.addressNo}
                 onChange={handleInputChange}
               />
             </div>
-
+            <div className="addressLine1">
+              <label htmlFor="addressLine1" className="caption1 capitalize">
+                Address Line 1 <span className="text-red">*</span>
+              </label>
+              <input
+                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
+                id="addressLine1"
+                type="text"
+                required
+                value={formData.addressLine1}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="addressLine2">
+              <label htmlFor="addressLine2" className="caption1 capitalize">
+                Address Line 2 <span className="text-red">*</span>
+              </label>
+              <input
+                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
+                id="addressLine2"
+                type="text"
+                required
+                value={formData.addressLine2}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="street">
               <label htmlFor="shippingStreet" className="caption1 capitalize">
                 street address <span className="text-red">*</span>
@@ -172,7 +200,7 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
                 id="shippingZip"
                 type="text"
                 required
-                value={formData.zip}
+                value={formData.zipCode}
                 onChange={handleInputChange}
               />
             </div>
@@ -186,19 +214,6 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
                 type="text"
                 required
                 value={formData.phone}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="email">
-              <label htmlFor="shippingEmail" className="caption1 capitalize">
-                Email <span className="text-red">*</span>
-              </label>
-              <input
-                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingEmail"
-                type="email"
-                required
-                value={formData.email}
                 onChange={handleInputChange}
               />
             </div>

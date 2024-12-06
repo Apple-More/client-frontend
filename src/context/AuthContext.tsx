@@ -55,6 +55,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response = await loginService(email, password);
 
       const accessToken = response.data.data.accessToken;
+      localStorage.setItem("jwt_token", accessToken);
       const decoded = jwt.decode(accessToken) as { user: User } | null; // Cast decoded payload
 
       if (!decoded || !decoded.user) {
@@ -67,7 +68,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setCookie(null, "authToken", accessToken, {
         path: "/",
         secure: true,
-        sameSite: "strict",
       });
       toast.success("Login successful");
       setUser(user);
@@ -88,17 +88,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   //Retrieve stored user from localStorage on mount
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) setUser(JSON.parse(storedUser));
-    setLoading(false); // Set loading to false after user is retrieved
-  }, []);
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) setUser(JSON.parse(storedUser));
+  //   setLoading(false); // Set loading to false after user is retrieved
+  // }, []);
 
-  // Store user in localStorage when it changes
-  useEffect(() => {
-    if (user) localStorage.setItem("user", JSON.stringify(user));
-    else localStorage.removeItem("user");
-  }, [user]);
+  // // Store user in localStorage when it changes
+  // useEffect(() => {
+  //   if (user) localStorage.setItem("user", JSON.stringify(user));
+  //   else localStorage.removeItem("user");
+  // }, [user]);
 
   return (
     <AuthContext.Provider

@@ -6,19 +6,19 @@ import {
   editShippingAddress,
   getShippingAddresses,
 } from "@/services/ShippingAddressServices";
+import { toast } from "react-toastify";
 
 interface Address {
-  id: string; // Assuming each address has a unique ID
-  firstName: string;
-  lastName: string;
+  addressId: string;
   addressNo: string;
+  addressLine1: string;
+  addressLine2: string;
   street: string;
   city: string;
   province: string;
   country: string;
-  zip: string;
+  zipCode: string;
   phone: string;
-  email: string;
 }
 
 const ShippingAddresses: React.FC = () => {
@@ -32,6 +32,7 @@ const ShippingAddresses: React.FC = () => {
     const fetchAddresses = async () => {
       try {
         const response = await getShippingAddresses(user?.customerId);
+        console.log(response.data);
         setAddresses(response.data); // Update state with fetched addresses
       } catch (error) {
         console.error("Failed to fetch shipping addresses:", error);
@@ -56,15 +57,23 @@ const ShippingAddresses: React.FC = () => {
     try {
       if (selectedAddress) {
         // Update the address on the backend
-        await editShippingAddress(selectedAddress, selectedAddress.id);
+        await editShippingAddress(
+          user?.customerId,
+          selectedAddress,
+          selectedAddress.addressId
+        );
+        toast.success("Address updated successfully");
         console.log("Address updated successfully:", selectedAddress);
         setAddresses((prev) =>
           prev.map((addr) =>
-            addr.id === selectedAddress.id ? selectedAddress : addr
+            addr.addressId === selectedAddress.addressId
+              ? selectedAddress
+              : addr
           )
         ); // Update state with the modified address
       }
     } catch (error) {
+      toast.error("Failed to update address. Please try again.");
       console.error("Failed to update address:", error);
     } finally {
       setIsPopupOpen(false); // Close the popup
@@ -83,47 +92,51 @@ const ShippingAddresses: React.FC = () => {
           <div className="heading4">Shipping Addresses</div>
           <div className="body1 mt-2">Manage your shipping addresses here</div>
           <div className="mt-7">
-            {addresses.map((address) => (
-              <div
-                key={address.id}
-                className="address-card flex items-center justify-between mb-4"
-              >
-                <div className="flex items-center">
-                  <div className="address-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-map-pin"
-                    >
-                      <circle cx="12" cy="10" r="3"></circle>
-                      <line x1="12" y1="21" x2="12" y2="14"></line>
-                      <path d="M5 18a9 9 0 0 1 14-7"></path>
-                    </svg>
-                  </div>
-                  <div className="address-info ml-3">
-                    <div className="heading5">{`${address.firstName} ${address.lastName}`}</div>
-                    <div className="body1 mt-1">
-                      {`${address.street}, ${address.city}, ${address.province}, ${address.zip}, ${address.country}`}
+            {addresses.length > 0 ? (
+              addresses.map((address) => (
+                <div
+                  key={address.addressId}
+                  className="address-card flex items-center justify-between mb-4"
+                >
+                  <div className="flex items-center">
+                    <div className="address-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-map-pin"
+                      >
+                        <circle cx="12" cy="10" r="3"></circle>
+                        <line x1="12" y1="21" x2="12" y2="14"></line>
+                        <path d="M5 18a9 9 0 0 1 14-7"></path>
+                      </svg>
+                    </div>
+                    <div className="address-info ml-3">
+                      {/* <div className="heading5">{`${address.firstName} ${address.lastName}`}</div> */}
+                      <div className="body1 mt-1">
+                        {`${address.addressNo},${address.addressLine1},${address.addressLine2},${address.street}, ${address.city}, ${address.province}, ${address.zipCode}, ${address.country}`}
+                      </div>
                     </div>
                   </div>
+                  <div className="address-action">
+                    <button
+                      className="button-main"
+                      onClick={() => handleEditClick(address)}
+                    >
+                      Edit
+                    </button>
+                  </div>
                 </div>
-                <div className="address-action">
-                  <button
-                    className="button-main"
-                    onClick={() => handleEditClick(address)}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p>No Addresses Found</p>
+            )}
           </div>
         </div>
       </div>

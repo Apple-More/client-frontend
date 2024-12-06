@@ -16,9 +16,9 @@ const serverTimeLeft: CountdownTimeType = countdownTime();
 const instrument = Instrument_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Applemore | Top Apple Products Dealer in Sri Lanka',
-  description: 'Top Apple Products Dealer in Sri Lanka',
-}
+  title: "Applemore | Top Apple Products Dealer in Sri Lanka",
+  description: "Top Apple Products Dealer in Sri Lanka",
+};
 
 export default function RootLayout({
   children,
@@ -30,7 +30,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={instrument.className}>
           {children}
-          <ToastContainer position="top-center" autoClose={5000} />
+          <ToastContainer position="top-right" autoClose={5000} />
           <ModalCart serverTimeLeft={serverTimeLeft} />
           <ModalWishlist />
           <ModalSearch />
