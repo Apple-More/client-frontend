@@ -81,6 +81,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Logout function
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("jwt_token");
     localStorage.removeItem("user");
     destroyCookie(null, "authToken", { path: "/" });
     router.refresh(); // Force a re-render of the app
