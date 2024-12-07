@@ -22,11 +22,7 @@ const Login = () => {
           <div className="content-main flex gap-y-8 max-md:flex-col">
             <div className="left md:w-1/2 w-full lg:pr-[60px] md:pr-[40px] md:border-r border-line">
               <div className="heading4">Login</div>
-              {isAuthenticated ? (
-                <p className="text-red font-bold ">You are already logged in</p>
-              ) : (
-                <LoginForm />
-              )}
+              {isAuthenticated ? "" : <LoginForm />}
             </div>
             <NewCustomerLogin />
           </div>

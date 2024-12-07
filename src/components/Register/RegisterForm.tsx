@@ -19,18 +19,17 @@ const RegisterForm = () => {
     phoneNumber: "",
   });
   const router = useRouter();
-  const [isTermsChecked, setIsTermsChecked] = useState(false);
 
   const [errors, setErrors] = useState({
     emailInvalid: false,
     passwordMismatch: false,
     invalidPassword: false,
-    termsNotAccepted: false,
   });
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const passwordRegex =
-    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
 
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,10 +39,6 @@ const RegisterForm = () => {
       ...prev,
       [id]: id === "email" ? value.toLowerCase() : value, // Lowercase email
     }));
-  };
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsTermsChecked(e.target.checked);
   };
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -56,14 +51,12 @@ const RegisterForm = () => {
       emailInvalid: !isEmailValid,
       passwordMismatch: formData.password !== formData.confirmPassword,
       invalidPassword: !isPasswordValid,
-      termsNotAccepted: !isTermsChecked,
     });
 
     if (
       isEmailValid &&
       isPasswordValid &&
-      formData.password === formData.confirmPassword &&
-      isTermsChecked
+      formData.password === formData.confirmPassword
     ) {
       // Construct customer data
       const customerData = {
@@ -171,30 +164,7 @@ const RegisterForm = () => {
             Password and Confirm Password do not match.
           </p>
         )}
-        <div className="flex items-center mt-5">
-          <div className="block-input">
-            <input type="checkbox" name="remember" id="remember" />
-            <Icon.CheckSquare
-              size={20}
-              weight="fill"
-              className="icon-checkbox"
-            />
-          </div>
-          <label
-            htmlFor="remember"
-            className="pl-2 cursor-pointer text-secondary2"
-          >
-            I agree to the
-            <Link href={"#!"} className="text-black hover:underline pl-1">
-              Terms of User
-            </Link>
-          </label>
-        </div>
-        {errors.termsNotAccepted && (
-          <p className="text-red mt-2">
-            You must agree to the Terms of User to proceed.
-          </p>
-        )}
+
         <div className="block-button md:mt-7 mt-4">
           <button className="button-main bg-black" type="submit">
             Register

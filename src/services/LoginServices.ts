@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+
 import axiosInstance from "./AxiosInstances";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ import axios from "axios";
 export const loginService = async (email: string, password: string) => {
   try {
     const response = await axiosInstance.post(
-      "/users/v1/auth/customers/login",
+      "/user-service/v1/public/auth/customers/login",
       {
         email,
         password,

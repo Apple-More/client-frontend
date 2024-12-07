@@ -1,17 +1,16 @@
 import React from "react";
 
 interface FormData {
-  id: string; // Assuming each address has a unique ID
-  firstName: string;
-  lastName: string;
+  addressId: string;
   addressNo: string;
+  addressLine1: string;
+  addressLine2: string;
   street: string;
   city: string;
   province: string;
   country: string;
-  zip: string;
-  phone: string;
-  email: string;
+  zipCode: string;
+  phoneNumber: string;
 }
 
 interface EditAddressPopupProps {
@@ -38,7 +37,7 @@ const EditAddressPopup: React.FC<EditAddressPopupProps> = ({
         </button>
         <form onSubmit={onSubmit}>
           <div className="grid sm:grid-cols-2 gap-4 gap-y-5 mt-5">
-            <div className="first-name">
+            {/* <div className="first-name">
               <label htmlFor="firstName" className="caption1 capitalize">
                 First Name <span className="text-red">*</span>
               </label>
@@ -63,7 +62,7 @@ const EditAddressPopup: React.FC<EditAddressPopupProps> = ({
                 value={formData.lastName}
                 onChange={onChange}
               />
-            </div>
+            </div> */}
             <div className="company">
               <label htmlFor="company" className="caption1 capitalize">
                 Address No <span className="text-red">*</span>
@@ -76,7 +75,32 @@ const EditAddressPopup: React.FC<EditAddressPopupProps> = ({
                 onChange={onChange}
               />
             </div>
-
+            <div className="addressLine1">
+              <label htmlFor="addressLine1" className="caption1 capitalize">
+                Address Line 1 <span className="text-red">*</span>
+              </label>
+              <input
+                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
+                id="addressLine1"
+                type="text"
+                required
+                value={formData.addressLine1}
+                onChange={onChange}
+              />
+            </div>
+            <div className="addressLine2">
+              <label htmlFor="addressLine2" className="caption1 capitalize">
+                Address Line 2 <span className="text-red">*</span>
+              </label>
+              <input
+                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
+                id="addressLine2"
+                type="text"
+                required
+                value={formData.addressLine2}
+                onChange={onChange}
+              />
+            </div>
             <div className="street">
               <label htmlFor="shippingStreet" className="caption1 capitalize">
                 street address <span className="text-red">*</span>
@@ -138,7 +162,7 @@ const EditAddressPopup: React.FC<EditAddressPopupProps> = ({
                 id="shippingZip"
                 type="text"
                 required
-                value={formData.zip}
+                value={formData.zipCode}
                 onChange={onChange}
               />
             </div>
@@ -151,20 +175,7 @@ const EditAddressPopup: React.FC<EditAddressPopupProps> = ({
                 id="shippingPhone"
                 type="text"
                 required
-                value={formData.phone}
-                onChange={onChange}
-              />
-            </div>
-            <div className="email">
-              <label htmlFor="shippingEmail" className="caption1 capitalize">
-                Email <span className="text-red">*</span>
-              </label>
-              <input
-                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingEmail"
-                type="email"
-                required
-                value={formData.email}
+                value={formData.phoneNumber}
                 onChange={onChange}
               />
             </div>

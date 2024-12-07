@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-
+import { useAuth } from "@/context/AuthContext";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 import { addShippingAddress } from "@/services/ShippingAddressServices";
+import { toast } from "react-toastify";
 
 interface ShippingAddressFormProps {
   activeAddress: string | null | undefined;
@@ -18,26 +19,29 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
   setActiveAddress,
   onAction,
 }) => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
     addressNo: "",
+    addressLine1: "",
+    addressLine2: "",
     street: "",
     city: "",
     province: "",
     country: "",
-    zip: "",
-    phone: "",
-    email: "",
+    zipCode: "",
+    phoneNumber: "",
   });
 
   const handleAddShippingAddress = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     try {
-      await addShippingAddress(formData);
+      console.log(user?.userId);
+      const response = await addShippingAddress(user?.userId, formData);
+      console.log(response);
+      toast.success("Shipping address added successfully");
     } catch (error) {
+      toast.error("Failed to add shipping address");
       console.error("Failed to add shipping address:", error);
     }
   };
@@ -68,7 +72,7 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
           }`}
         >
           <div className="grid sm:grid-cols-2 gap-4 gap-y-5 mt-5">
-            <div className="first-name">
+            {/* <div className="first-name">
               <label
                 htmlFor="shippingFirstName"
                 className="caption1 capitalize"
@@ -96,28 +100,53 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
                 value={formData.lastName}
                 onChange={handleInputChange}
               />
-            </div>
+            </div> */}
             <div className="company">
-              <label htmlFor="shippingCompany" className="caption1 capitalize">
+              <label htmlFor="addressNo" className="caption1 capitalize">
                 Address No <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingCompany"
+                id="addressNo"
                 type="text"
                 required
                 value={formData.addressNo}
                 onChange={handleInputChange}
               />
             </div>
-
+            <div className="addressLine1">
+              <label htmlFor="addressLine1" className="caption1 capitalize">
+                Address Line 1 <span className="text-red">*</span>
+              </label>
+              <input
+                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
+                id="addressLine1"
+                type="text"
+                required
+                value={formData.addressLine1}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="addressLine2">
+              <label htmlFor="addressLine2" className="caption1 capitalize">
+                Address Line 2 <span className="text-red">*</span>
+              </label>
+              <input
+                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
+                id="addressLine2"
+                type="text"
+                required
+                value={formData.addressLine2}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="street">
-              <label htmlFor="shippingStreet" className="caption1 capitalize">
+              <label htmlFor="street" className="caption1 capitalize">
                 street address <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingStreet"
+                id="street"
                 type="text"
                 required
                 value={formData.street}
@@ -125,25 +154,25 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
               />
             </div>
             <div className="city">
-              <label htmlFor="shippingCity" className="caption1 capitalize">
+              <label htmlFor="city" className="caption1 capitalize">
                 Town / city <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingCity"
+                id="city"
                 type="text"
                 required
                 value={formData.city}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="state">
-              <label htmlFor="shippingState" className="caption1 capitalize">
+            <div className="province">
+              <label htmlFor="province" className="caption1 capitalize">
                 Province <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingState"
+                id="province"
                 type="text"
                 required
                 value={formData.province}
@@ -151,54 +180,41 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
               />
             </div>
             <div className="country">
-              <label htmlFor="shippingCountry" className="caption1 capitalize">
+              <label htmlFor="country" className="caption1 capitalize">
                 Country / Region <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingCountry"
+                id="country"
                 type="text"
                 required
                 value={formData.country}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="zip">
-              <label htmlFor="shippingZip" className="caption1 capitalize">
+            <div className="zipCode">
+              <label htmlFor="zipCode" className="caption1 capitalize">
                 Postal Code / ZIP Code <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingZip"
+                id="zipCode"
                 type="text"
                 required
-                value={formData.zip}
+                value={formData.zipCode}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="phone">
-              <label htmlFor="shippingPhone" className="caption1 capitalize">
+            <div className="phoneNumber">
+              <label htmlFor="phoneNumber" className="caption1 capitalize">
                 Phone <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingPhone"
+                id="phoneNumber"
                 type="text"
                 required
-                value={formData.phone}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="email">
-              <label htmlFor="shippingEmail" className="caption1 capitalize">
-                Email <span className="text-red">*</span>
-              </label>
-              <input
-                className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingEmail"
-                type="email"
-                required
-                value={formData.email}
+                value={formData.phoneNumber}
                 onChange={handleInputChange}
               />
             </div>

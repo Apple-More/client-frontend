@@ -15,7 +15,7 @@ export const registerService = async (customerData: {
   phoneNumber:string;
 }) => {
   try {
-    const response = await axiosInstance.post("/users/v1/customers", customerData);
+    const response = await axiosInstance.post("user-service/v1/public/customers/register", customerData);
     console.log("Customer created successfully:", response.data);
     return response.data; // Return the API response data
   } catch (error) {

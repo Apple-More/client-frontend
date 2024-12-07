@@ -1,12 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { resetPassword } from "@/services/PasswordChangeServices";
+import { toast } from "react-toastify";
 
 const ChangePasswordForm = () => {
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
+  const { user } = useAuth();
   const router = useRouter();
   const [errors, setErrors] = useState({
     passwordMismatch: false,
@@ -35,7 +39,13 @@ const ChangePasswordForm = () => {
       });
 
       if (isPasswordValid && formData.password === formData.confirmPassword) {
-        router.push("/login");
+        const response = await resetPassword(formData.password, user?.email);
+        if (response.status === 1) {
+          toast.success("Password Changed Successfully");
+          router.push("/login");
+        } else {
+          toast.error("Change Password Failed");
+        }
       }
     } catch (error) {
       console.error("Change Password failed:", error);
