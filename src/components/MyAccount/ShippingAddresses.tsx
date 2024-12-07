@@ -7,45 +7,28 @@ import {
   getShippingAddresses,
 } from "@/services/ShippingAddressServices";
 import { toast } from "react-toastify";
-
-interface Address {
-  addressId: string;
-  addressNo: string;
-  addressLine1: string;
-  addressLine2: string;
-  street: string;
-  city: string;
-  province: string;
-  country: string;
-  zipCode: string;
-  phone: string;
-}
+import { Address } from "@/type/AddressType";
 
 const ShippingAddresses: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
-  const { user } = useAuth();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  // Fetch addresses from the backend
+  const fetchAddresses = async () => {
+    try {
+      const response = await getShippingAddresses(user?.userId);
+      setAddresses(response.data.data); // Update state with fetched addresses
+      console.log("Addresses:", addresses);
+    } catch (error) {
+      console.error("Failed to fetch shipping addresses:", error);
+    }
+  };
 
   useEffect(() => {
-    // Fetch addresses from the backend
-    const fetchAddresses = async () => {
-      try {
-        const response = await getShippingAddresses(user?.customerId);
-        console.log(response.data);
-        setAddresses(response.data); // Update state with fetched addresses
-      } catch (error) {
-        console.error("Failed to fetch shipping addresses:", error);
-      }
-    };
-
     fetchAddresses();
-  }, [user?.customerId]);
-
-  const handleEditClick = (address: Address) => {
-    setSelectedAddress(address); // Set the selected address
-    setIsPopupOpen(true);
-  };
+  }, []);
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
@@ -58,7 +41,7 @@ const ShippingAddresses: React.FC = () => {
       if (selectedAddress) {
         // Update the address on the backend
         await editShippingAddress(
-          user?.customerId,
+          user?.userId,
           selectedAddress,
           selectedAddress.addressId
         );
@@ -88,7 +71,7 @@ const ShippingAddresses: React.FC = () => {
   return (
     <div className="container">
       <div className="content-main flex gap-y-8 max-md:flex-col">
-        <div className="left md:w-1/2 w-full lg:pr-[60px] md:pr-[40px] md:border-r border-line">
+        <div className=" w-full ">
           <div className="heading4">Shipping Addresses</div>
           <div className="body1 mt-2">Manage your shipping addresses here</div>
           <div className="mt-7">
@@ -118,19 +101,10 @@ const ShippingAddresses: React.FC = () => {
                       </svg>
                     </div>
                     <div className="address-info ml-3">
-                      {/* <div className="heading5">{`${address.firstName} ${address.lastName}`}</div> */}
                       <div className="body1 mt-1">
-                        {`${address.addressNo},${address.addressLine1},${address.addressLine2},${address.street}, ${address.city}, ${address.province}, ${address.zipCode}, ${address.country}`}
+                        {`${address.addressNo}, ${address.addressLine1}, ${address.addressLine2}, ${address.street}, ${address.city}, ${address.province}, ${address.country}, ${address.zipCode}`}
                       </div>
                     </div>
-                  </div>
-                  <div className="address-action">
-                    <button
-                      className="button-main"
-                      onClick={() => handleEditClick(address)}
-                    >
-                      Edit
-                    </button>
                   </div>
                 </div>
               ))

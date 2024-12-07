@@ -21,7 +21,6 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
 }) => {
   const { user } = useAuth();
   const [formData, setFormData] = useState({
-    addressId: "",
     addressNo: "",
     addressLine1: "",
     addressLine2: "",
@@ -30,14 +29,16 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
     province: "",
     country: "",
     zipCode: "",
-    phone: "",
+    phoneNumber: "",
   });
 
   const handleAddShippingAddress = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     try {
-      await addShippingAddress(user?.customerId, formData);
+      console.log(user?.userId);
+      const response = await addShippingAddress(user?.userId, formData);
+      console.log(response);
       toast.success("Shipping address added successfully");
     } catch (error) {
       toast.error("Failed to add shipping address");
@@ -140,12 +141,12 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
               />
             </div>
             <div className="street">
-              <label htmlFor="shippingStreet" className="caption1 capitalize">
+              <label htmlFor="street" className="caption1 capitalize">
                 street address <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingStreet"
+                id="street"
                 type="text"
                 required
                 value={formData.street}
@@ -153,25 +154,25 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
               />
             </div>
             <div className="city">
-              <label htmlFor="shippingCity" className="caption1 capitalize">
+              <label htmlFor="city" className="caption1 capitalize">
                 Town / city <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingCity"
+                id="city"
                 type="text"
                 required
                 value={formData.city}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="state">
-              <label htmlFor="shippingState" className="caption1 capitalize">
+            <div className="province">
+              <label htmlFor="province" className="caption1 capitalize">
                 Province <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingState"
+                id="province"
                 type="text"
                 required
                 value={formData.province}
@@ -179,41 +180,41 @@ const ShippingAddressForm: React.FC<ShippingAddressFormProps> = ({
               />
             </div>
             <div className="country">
-              <label htmlFor="shippingCountry" className="caption1 capitalize">
+              <label htmlFor="country" className="caption1 capitalize">
                 Country / Region <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingCountry"
+                id="country"
                 type="text"
                 required
                 value={formData.country}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="zip">
-              <label htmlFor="shippingZip" className="caption1 capitalize">
+            <div className="zipCode">
+              <label htmlFor="zipCode" className="caption1 capitalize">
                 Postal Code / ZIP Code <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingZip"
+                id="zipCode"
                 type="text"
                 required
                 value={formData.zipCode}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="phone">
-              <label htmlFor="shippingPhone" className="caption1 capitalize">
+            <div className="phoneNumber">
+              <label htmlFor="phoneNumber" className="caption1 capitalize">
                 Phone <span className="text-red">*</span>
               </label>
               <input
                 className="border-line mt-2 px-4 py-3 w-full rounded-lg"
-                id="shippingPhone"
+                id="phoneNumber"
                 type="text"
                 required
-                value={formData.phone}
+                value={formData.phoneNumber}
                 onChange={handleInputChange}
               />
             </div>

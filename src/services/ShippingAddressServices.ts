@@ -1,8 +1,8 @@
+import { toast } from "react-toastify";
 import axiosInstance from "./AxiosInstances";
 import axios from "axios";
 
 interface FormData {
-    addressId: string;
   addressNo: string;
   addressLine1: string;
   addressLine2: string;
@@ -11,11 +11,12 @@ interface FormData {
   province: string;
   country: string;
   zipCode: string;
-  phone: string;
+  phoneNumber: string;
   }
 
 export const getShippingAddresses = async (customerId: string | undefined) => {
     try {
+    
         const response = await axiosInstance.get(`/user-service/v1/customers/${customerId}/address`);
         return response;
     } catch (error) {
@@ -30,12 +31,14 @@ export const getShippingAddresses = async (customerId: string | undefined) => {
 export const addShippingAddress = async (customerId: string | undefined,formData : FormData ) => {
     try {
         const response = await axiosInstance.post(`/user-service/v1/customers/${customerId}/address`, formData);
+        toast.success("Shipping Address added successfully");
         return response;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             // Handle Axios-specific errors
             throw new Error(error.response?.data?.message );
           }
+          toast.error("An unexpected error occurred");
           throw new Error("An unexpected error occurred");
     }
 }

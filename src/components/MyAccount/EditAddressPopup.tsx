@@ -10,7 +10,7 @@ interface FormData {
   province: string;
   country: string;
   zipCode: string;
-  phone: string;
+  phoneNumber: string;
 }
 
 interface EditAddressPopupProps {
@@ -175,7 +175,7 @@ const EditAddressPopup: React.FC<EditAddressPopupProps> = ({
                 id="shippingPhone"
                 type="text"
                 required
-                value={formData.phone}
+                value={formData.phoneNumber}
                 onChange={onChange}
               />
             </div>
