@@ -31,7 +31,7 @@ const SliderOne = () => {
                                     <div className="text-content basis-1/2">
                                         <div className="text-sub-display">Hello, Apple Intelligence.</div>
                                         <div className="text-display md:mt-5 mt-2" style={{ textTransform: "none" }}>iPhone 16 Pro Max</div>
-                                        <Link href='/shop/breadcrumb-img' className="button-main md:mt-8 mt-3">Shop Now</Link>
+                                        <Link href='/homepages/marketplace' className="button-main md:mt-8 mt-3">Shop Now</Link>
                                     </div>
                                     <div className="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] bottom-0">
                                         <Image
@@ -51,7 +51,7 @@ const SliderOne = () => {
                                     <div className="text-content basis-1/2">
                                         <div className="text-sub-display">The Ultimate Device for a Healthy Life.</div>
                                         <div className="text-display md:mt-5 mt-2">Apple Watch SE 2024</div>
-                                        <Link href='/shop/breadcrumb-img' className="button-main md:mt-8 mt-3">Shop Now</Link>
+                                        <Link href='/homepages/marketplace' className="button-main md:mt-8 mt-3">Shop Now</Link>
                                     </div>
                                     <div className="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] sm:bottom-[80px] bottom-10">
                                         <Image
@@ -71,7 +71,7 @@ const SliderOne = () => {
                                     <div className="text-content basis-1/2">
                                         <div className="text-sub-display">If You Can Dream It, Mac Can Do It.</div>
                                         <div className="text-display md:mt-5 mt-2">MacBook Air M3 2024</div>
-                                        <Link href='/shop/breadcrumb-img' className="button-main md:mt-8 mt-3">Shop Now</Link>
+                                        <Link href='/homepages/marketplace' className="button-main md:mt-8 mt-3">Shop Now</Link>
                                     </div>
                                     <div className="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] sm:bottom-[80px] bottom-10">
                                         <Image
@@ -91,7 +91,7 @@ const SliderOne = () => {
                                     <div className="text-content basis-1/2">
                                         <div className="text-sub-display">Redefine Possibilities, Elevate Creativity.</div>
                                         <div className="text-display md:mt-5 mt-2" style={{ textTransform: "none" }}>iPad Air 11 inch M2 Chip 2024</div>
-                                        <Link href='/shop/breadcrumb-img' className="button-main md:mt-8 mt-3">Shop Now</Link>
+                                        <Link href='/homepages/marketplace' className="button-main md:mt-8 mt-3">Shop Now</Link>
                                     </div>
                                     <div className="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] sm:bottom-[80px] bottom-10">
                                         <Image
@@ -111,7 +111,7 @@ const SliderOne = () => {
                                     <div className="text-content basis-1/2">
                                         <div className="text-sub-display">Pure Sound, Total Freedom.</div>
                                         <div className="text-display md:mt-5 mt-2">Airpods 4</div>
-                                        <Link href='/shop/breadcrumb-img' className="button-main md:mt-8 mt-3">Shop Now</Link>
+                                        <Link href='/homepages/marketplace' className="button-main md:mt-8 mt-3">Shop Now</Link>
                                     </div>
                                     <div className="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] sm:bottom-[80px] bottom-14">
                                         <Image
