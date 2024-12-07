@@ -13,9 +13,8 @@ import Footer from '@/components/Footer/Footer'
 const AboutUs = () => {
     return (
         <>
-            <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
-                <MenuOne props="bg-transparent" />
+                <MenuOne props="bg-white" />
                 <Breadcrumb heading='About Us' subHeading='About Us' />
             </div>
             <div className='about md:pt-20 pt-10'>
@@ -23,8 +22,24 @@ const AboutUs = () => {
                     <div className="container">
                         <div className="text flex items-center justify-center">
                             <div className="content md:w-5/6 w-full">
-                                <div className="heading3 text-center">I{String.raw`'m`} obsessed with the dress Pippa Middleton wore to her brother{String.raw`'s`} wedding.</div>
-                                <div className="body1 text-center md:mt-7 mt-5">Kim Kardashian West needs no introduction. In the 14 years since she first graced our screens in Keeping Up With The Kardashians, she has built her KKW beauty empire, filmed her show, wrapped her show, become a billionaire, studied law, campaigned for the rights of death row inmates, travelled the world to attend events such as Paris Fashion Week, raised four children and launched her wildly successful shapewear brand SKIMS.</div>
+                                <div className="heading3 text-center">Welcome to Applemore, Sri Lanka{String.raw`'s`} premier destination for all the Apple Products!</div>
+                                <div className="body1 text-center md:mt-7 mt-5">At Applemore, we believe in bringing the world of Apple closer to you. Our mission is to provide you with a seamless and exceptional shopping experience, whether you are a tech enthusiast, a creative professional, or someone looking for the perfect Apple device for everyday use.</div>
+                            </div>
+                        </div>
+                        <div className="text flex items-center justify-center">
+                            <div className="content md:w-5/6 w-full pt-20">
+                                <div className="heading3 text-center">Who We Are</div>
+                                <div className="body1 text-center md:mt-7 mt-5">Applemore is an authorized retailer of Apple products, offering a wide range of the latest devices and accessories, from iPhones and iPads to MacBooks and Apple Watches. With years of experience and a dedicated team of Apple experts, we strive to deliver unmatched customer service and product expertise.</div>
+                            </div>
+                        </div>
+                        <div className="text flex items-center justify-center">
+                            <div className="content md:w-5/6 w-full pt-20">
+                                <div className="heading3 text-center">Our Vision</div>
+                                <div className="body1 text-center md:mt-7 mt-5">To be Sri Lanka’s most trusted and innovative Apple retailer, delivering world-class products and services that enhance the lives of our customers.</div>
+                            </div>
+                            <div className="content md:w-5/6 w-full pt-20">
+                                <div className="heading3 text-center">Our Mission</div>
+                                <div className="body1 text-center md:mt-7 mt-5">To connect people with the best of Apple technology and provide an outstanding customer experience every step of the way.</div>
                             </div>
                         </div>
                         <div className="list-img grid sm:grid-cols-3 gap-[30px] md:pt-20 pt-10">
@@ -59,10 +74,7 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-            <Benefit props="md:pt-20 pt-10" />
-            <Newsletter props="bg-green md:mt-20 mt-10" />
-            <Instagram />
-            <Brand />
+            <Benefit props="md:py-20 py-10" />
             <Footer />
         </>
     )

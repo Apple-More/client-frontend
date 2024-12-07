@@ -1,5 +1,6 @@
 import React from 'react'
 import TopNavOne from '@/components/Header/TopNav/TopNavOne'
+import MenuOne from '@/components/Header/Menu/MenuOne'
 import MenuMarketplace from '@/components/Header/Menu/MenuMarketplace'
 import SliderMarketplace from '@/components/Slider/SliderMarketplace'
 import BannerAbove from '@/components/Marketplace/BannerAbove'
@@ -19,9 +20,8 @@ import Recommend from '@/components/Marketplace/Recommend'
 export default function HomeMarketplace() {
     return (
         <>
-            <TopNavOne props="style-marketplace bg-[#263587] border-b border-surface1" slogan='New customers save 10% with the code GET10' />
             <div id="header" className='relative w-full'>
-                <MenuMarketplace />
+            <MenuOne props="bg-white" />
                 <SliderMarketplace />
             </div>
             <BannerAbove />
@@ -34,7 +34,6 @@ export default function HomeMarketplace() {
             <Benefit props='md:py-[60px] py-10 border-b border-line' />
             <Brand />
             <Footer />
-            <ModalNewsletter />
         </>
     )
 }

@@ -91,185 +91,39 @@ const MenuOne: React.FC<Props> = ({ props }) => {
                                     </li>
                                     <li className='h-full'>
                                         <Link
-                                            href="/homepages/marketplace"
-                                            className={`text-button-uppercase duration-300 h-full flex items-center justify-center ${pathname.includes('/product/') ? 'active' : ''}`}
+                                            href="#!"
+                                            className={`text-button-uppercase duration-300 h-full flex items-center justify-center ${pathname.includes('/marketplace') ? 'active' : ''}`}
                                         >
                                             Products
                                         </Link>
-                                        <div className="mega-menu absolute top-[74px] left-0 bg-white w-screen">
-                                            <div className="container">
-                                                <div className="flex justify-between py-8">
-                                                    <div className="nav-link basis-2/3 flex justify-between xl:pr-14 pr-5">
-                                                        <div className="nav-item">
-                                                            <div className="text-button-uppercase pb-2">Products Features</div>
-                                                            <ul>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/default'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/default' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Defaults
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/sale'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/sale' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Sale
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/countdown-timer'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/countdown-timer' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Countdown Timer
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/grouped'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/grouped' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Grouped
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/bought-together'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/bought-together' ? 'active' : ''}`}
-                                                                    >
-                                                                        Frequently Bought Together
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/out-of-stock'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/out-of-stock' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Out Of Stock
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/variable'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/variable' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Variable
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div className="nav-item">
-                                                            <div className="text-button-uppercase pb-2">Products Features</div>
-                                                            <ul>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/external'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/external' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products External
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/on-sale'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/on-sale' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products On Sale
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/discount'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/discount' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products With Discount
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/sidebar'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/sidebar' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products With Sidebar
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/fixed-price'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/fixed-price' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Fixed Price
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div className="nav-item">
-                                                            <div className="text-button-uppercase pb-2">Products Layout</div>
-                                                            <ul>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/thumbnail-left'}
-                                                                        className={`link text-secondary duration-300 cursor-pointer ${pathname === '/product/thumbnail-left' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Thumbnails Left
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/thumbnail-bottom'}
-                                                                        className={`link text-secondary duration-300 cursor-pointer ${pathname === '/product/thumbnail-bottom' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Thumbnails Bottom
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/one-scrolling'}
-                                                                        className={`link text-secondary duration-300 cursor-pointer ${pathname === '/product/one-scrolling' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Grid 1 Scrolling
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/two-scrolling'}
-                                                                        className={`link text-secondary duration-300 cursor-pointer ${pathname === '/product/two-scrolling' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Grid 2 Scrolling
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/combined-one'}
-                                                                        className={`link text-secondary duration-300 cursor-pointer ${pathname === '/product/combined-one' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Combined 1
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/combined-two'}
-                                                                        className={`link text-secondary duration-300 cursor-pointer ${pathname === '/product/combined-two' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Combined 2
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div className="recent-product pl-2.5 basis-1/3">
-                                                        <div className="text-button-uppercase pb-2">Recent Products</div>
-                                                        <div className="list-product hide-product-sold  grid grid-cols-2 gap-5 mt-3">
-                                                            {productData.filter(item => item.action === 'add to cart').slice(0, 2).map((prd, index) => (
-                                                                <Product key={index} data={prd} type='grid' />
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div className="sub-menu py-3 px-5 -left-30 absolute bg-white rounded-b-xl">
+                                            <ul className='w-full'>
+                                                <li>
+                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`} style={{ textTransform: "none" }}>
+                                                        iPhones
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`} style={{ textTransform: "none" }}>
+                                                        iPads
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`}>
+                                                        MacBooks
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`}>
+                                                        Applewatches
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`}>
+                                                        Airpods
+                                                    </Link>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </li>
                                     <li className='h-full'>
@@ -289,7 +143,7 @@ const MenuOne: React.FC<Props> = ({ props }) => {
                                         <Link href="#!" className={`text-button-uppercase duration-300 h-full flex items-center justify-center ${pathname.includes('/pages') ? 'active' : ''}`}>
                                             Contact Us
                                         </Link>
-                                        <div className="sub-menu py-3 px-5 -left-10 absolute bg-white rounded-b-xl">
+                                        <div className="sub-menu py-3 px-5 -left-3 absolute bg-white rounded-b-xl">
                                             <ul className='w-full'>
                                                 <li>
                                                     <Link href="/pages/contact" className={`link text-secondary duration-300 ${pathname === '/pages/contact' ? 'active' : ''}`}>
@@ -375,7 +229,7 @@ const MenuOne: React.FC<Props> = ({ props }) => {
                                         className={`${openSubNavMobile === 4 ? 'open' : ''}`}
                                         onClick={() => handleOpenSubNavMobile(4)}
                                     >
-                                        <a href={'/homepages/marketplace'} className='text-xl font-semibold flex items-center justify-between mt-5'>Products
+                                        <a href={'#!'} className='text-xl font-semibold flex items-center justify-between mt-5'>Products
                                             <span className='text-right'>
                                                 <Icon.CaretRight size={20} />
                                             </span>
@@ -392,172 +246,35 @@ const MenuOne: React.FC<Props> = ({ props }) => {
                                                 <div className="">
                                                     <div className="nav-link grid grid-cols-2 gap-5 gap-y-6 justify-between">
                                                         <div className="nav-item">
-                                                            <div className="text-button-uppercase pb-1">Products Features</div>
                                                             <ul>
                                                                 <li>
-                                                                    <Link
-                                                                        href={'/product/default'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/default' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Defaults
+                                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`} style={{ textTransform: "none" }}>
+                                                                        iPhones
                                                                     </Link>
                                                                 </li>
                                                                 <li>
-                                                                    <Link
-                                                                        href={'/product/sale'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/sale' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Sale
+                                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`} style={{ textTransform: "none" }}>
+                                                                         iPads
                                                                     </Link>
                                                                 </li>
                                                                 <li>
-                                                                    <Link
-                                                                        href={'/product/countdown-timer'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/countdown-timer' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Countdown Timer
+                                                                     <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`}>
+                                                                         MacBooks
                                                                     </Link>
                                                                 </li>
                                                                 <li>
-                                                                    <Link
-                                                                        href={'/product/grouped'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/grouped' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Grouped
+                                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`}>
+                                                                        Applewatches
                                                                     </Link>
                                                                 </li>
                                                                 <li>
-                                                                    <Link
-                                                                        href={'/product/bought-together'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/bought-together' ? 'active' : ''}`}
-                                                                    >
-                                                                        Frequently Bought Together
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/out-of-stock'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/out-of-stock' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Out Of Stock
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/variable'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/variable' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Variable
+                                                                    <Link href="/homepages/marketplace" className={`link text-secondary duration-300 ${pathname === '/marketplace' ? 'active' : ''}`}>
+                                                                    Airpods
                                                                     </Link>
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <div className="nav-item">
-                                                            <div className="text-button-uppercase pb-1">Products Features</div>
-                                                            <ul>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/external'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/external' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products External
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/on-sale'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/on-sale' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products On Sale
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/discount'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/discount' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products With Discount
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/sidebar'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/sidebar' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products With Sidebar
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/fixed-price'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/fixed-price' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Fixed Price
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div className="nav-item col-span-2">
-                                                            <div className="text-button-uppercase pb-1">Products Layout</div>
-                                                            <ul>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/thumbnail-left'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/thumbnail-left' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Thumbnails Left
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/thumbnail-bottom'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/thumbnail-bottom' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Thumbnails Bottom
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/one-scrolling'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/one-scrolling' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Grid 1 Scrolling
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/two-scrolling'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/two-scrolling' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Grid 2 Scrolling
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/combined-one'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/combined-one' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Combined 1
-                                                                    </Link>
-                                                                </li>
-                                                                <li>
-                                                                    <Link
-                                                                        href={'/product/combined-two'}
-                                                                        className={`link text-secondary duration-300 ${pathname === '/product/combined-two' ? 'active' : ''}`}
-                                                                    >
-                                                                        Products Combined 2
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div className="recent-product pt-4">
-                                                        <div className="text-button-uppercase pb-1">Recent Products</div>
-                                                        <div className="list-product hide-product-sold  grid grid-cols-2 gap-5 mt-3">
-                                                            {productData.slice(0, 2).map((prd, index) => (
-                                                                <Product key={index} data={prd} type='grid' />
-                                                            ))}
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

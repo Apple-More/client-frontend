@@ -1,13 +1,13 @@
 [
     {
         "id": "1",
-        "category": "fashion",
-        "title": "Variety of Styles!",
-        "name": "Fukuda E.",
+        "category": "electronics",
+        "title": "Great Shopping Experience!",
+        "name": "Nihal D.",
         "avatar": "/images/avatar/1.png",
-        "date": "November 10, 2023",
-        "address": "Tokyo, Japan",
-        "description": "Anvouge's exceptional customer service and attention to detail make shopping with them a pleasure. They understand my fashion needs and help me find the perfect pieces every time.",
+        "date": "January 10, 2024",
+        "address": "Colombo, Sri Lanka",
+        "description": "I had an amazing shopping experience here. The staff was very friendly and helped me find the perfect MacBook Pro. The whole process was smooth, and I couldn’t be happier with my purchase.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -16,13 +16,13 @@
     },
     {
         "id": "2",
-        "category": "fashion",
-        "title": "Quality of Clothing!",
-        "name": "Georgina S.",
+        "category": "electronics",
+        "title": "Exceptional Service!",
+        "name": "Tharindu K.",
         "avatar": "/images/avatar/2.png",
-        "date": "November 11, 2023",
-        "address": "Madrid, Spain",
-        "description": "I absolutely love this shop! The products are high-quality and the customer service is excellent. I always leave with exactly what I need and a smile on my face.",
+        "date": "January 11, 2024",
+        "address": "Kandy, Sri Lanka",
+        "description": "The service was impeccable. I was assisted by an expert who guided me through all my options and helped me choose the best iPhone for my needs. I highly recommend this store.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -31,28 +31,28 @@
     },
     {
         "id": "3",
-        "category": "fashion",
-        "title": "Customer Service!",
-        "name": "Elizabeth A.",
+        "category": "electronics",
+        "title": "Wonderful Shopping Experience!",
+        "name": "Sanika P.",
         "avatar": "/images/avatar/3.png",
-        "date": "November 13, 2023",
-        "address": "Manchester, UK",
-        "description": "I love this shop! The products are always top-quality, and the staff is incredibly friendly and helpful. They go out of their way to make sure that I'm satisfied with my purchase.",
+        "date": "January 13, 2024",
+        "address": "Galle, Sri Lanka",
+        "description": "Shopping at this Apple store was a breeze. The staff was knowledgeable, and they answered all my questions about the iPad Pro. I felt confident in my purchase, and the product is perfect.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
         ],
-        "star": 4
+        "star": 5
     },
     {
         "id": "4",
-        "category": "fashion",
-        "title": "Quality of Clothing!",
-        "name": "Christin H.",
+        "category": "electronics",
+        "title": "Excellent Shopping Environment!",
+        "name": "Dilani F.",
         "avatar": "/images/avatar/4.png",
-        "date": "November 15, 2023",
-        "address": "California, USA",
-        "description": "I can't get enough of Anvouge's high-quality clothing. It's comfortable, stylish, and always on-trend. The products are high-quality and the customer service is excellent.",
+        "date": "January 15, 2024",
+        "address": "Negombo, Sri Lanka",
+        "description": "The staff at this store are very helpful and the environment is inviting. They helped me select the Apple Watch Series 9, and I am extremely satisfied with my purchase.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -61,13 +61,13 @@
     },
     {
         "id": "5",
-        "category": "fashion",
-        "title": "Customer Service!",
-        "name": "Emily G.",
+        "category": "electronics",
+        "title": "Customer Service at its Best!",
+        "name": "Kasuni J.",
         "avatar": "/images/avatar/5.png",
-        "date": "November 18, 2023",
-        "address": "Paris, France",
-        "description": "Fantastic shop! Great selection, fair prices, and friendly staff. Highly recommended. The quality of the products is exceptional, and the prices are very reasonable!",
+        "date": "January 18, 2024",
+        "address": "Jaffna, Sri Lanka",
+        "description": "The customer service here is second to none. The staff were patient and very knowledgeable, guiding me through the features of the MacBook Air. I highly recommend this store.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -76,13 +76,13 @@
     },
     {
         "id": "6",
-        "category": "fashion",
-        "title": "Variety of Styles!",
-        "name": "Carolina C.",
+        "category": "electronics",
+        "title": "Top-tier Service and Products!",
+        "name": "Hiran L.",
         "avatar": "/images/avatar/6.png",
-        "date": "November 19, 2023",
-        "address": "London, UK",
-        "description": "Anvouge's fashion collection is a game-changer! Their unique and trendy pieces have completely transformed my style. It's comfortable, stylish, and always on-trend.",
+        "date": "January 19, 2024",
+        "address": "Colombo, Sri Lanka",
+        "description": "This store has excellent products and customer service. I was able to find exactly what I needed with the help of the expert staff. The MacBook Air has been a great investment!",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -91,13 +91,13 @@
     },
     {
         "id": "7",
-        "category": "yoga",
-        "title": "Quality of Clothing!",
-        "name": "Christin H.",
+        "category": "electronics",
+        "title": "A Delightful Shopping Experience!",
+        "name": "Avishka F.",
         "avatar": "/images/avatar/4.png",
-        "date": "November 15, 2023",
-        "address": "California, USA",
-        "description": "Their unique and trendy pieces have completely transformed my style.",
+        "date": "January 15, 2024",
+        "address": "Negombo, Sri Lanka",
+        "description": "Every time I visit, I’m treated with kindness. The staff here truly know their stuff and helped me find the perfect iMac for my home office.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -106,13 +106,13 @@
     },
     {
         "id": "8",
-        "category": "yoga",
-        "title": "Customer Service!",
-        "name": "Emily G.",
+        "category": "electronics",
+        "title": "The Best Apple Store Experience!",
+        "name": "Kusal M.",
         "avatar": "/images/avatar/5.png",
-        "date": "November 18, 2023",
-        "address": "Paris, France",
-        "description": "Exceptional customer service and attention to detail make shopping with them a pleasure",
+        "date": "January 18, 2024",
+        "address": "Moratuwa, Sri Lanka",
+        "description": "Shopping for my new iPhone 15 was a great experience! The staff here were very helpful, providing great advice on which model would suit me best. I’m so happy with my purchase!",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -121,13 +121,13 @@
     },
     {
         "id": "9",
-        "category": "yoga",
-        "title": "Variety of Styles!",
-        "name": "Carolina C.",
+        "category": "electronics",
+        "title": "Helpful and Knowledgeable Staff!",
+        "name": "Chandimal D.",
         "avatar": "/images/avatar/6.png",
-        "date": "November 19, 2023",
-        "address": "London, UK",
-        "description": "I can't get enough of Anvogue high-quality clothing. It's comfortable, stylish, and always on-trend.",
+        "date": "January 19, 2024",
+        "address": "Galle, Sri Lanka",
+        "description": "I was thoroughly impressed with the staff’s knowledge. They assisted me with selecting the perfect iPad Air and gave great advice on how to maximize its usage.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -136,13 +136,13 @@
     },
     {
         "id": "10",
-        "category": "yoga",
-        "title": "Variety of Styles!",
-        "name": "Fukuda E.",
+        "category": "electronics",
+        "title": "Great Service and Products!",
+        "name": "Mathews A.",
         "avatar": "/images/avatar/1.png",
-        "date": "November 10, 2023",
-        "address": "Tokyo, Japan",
-        "description": "Exceptional customer service and attention to detail make shopping with them a pleasure",
+        "date": "January 10, 2024",
+        "address": "Colombo, Sri Lanka",
+        "description": "I had a seamless shopping experience when buying my iPhone 15. The staff were very knowledgeable and helped me get the best deal for my purchase.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -151,13 +151,13 @@
     },
     {
         "id": "11",
-        "category": "yoga",
-        "title": "Quality of Clothing!",
-        "name": "Georgina S.",
+        "category": "electronics",
+        "title": "Incredible Experience!",
+        "name": "Lahiru K.",
         "avatar": "/images/avatar/2.png",
-        "date": "November 11, 2023",
-        "address": "Madrid, Spain",
-        "description": "I love this shop! The products are high-quality, the customer service is excellent",
+        "date": "January 11, 2024",
+        "address": "Kandy, Sri Lanka",
+        "description": "I had a fantastic experience buying my Apple TV 4K here. The store offers excellent customer service, and the team ensured that I was well-informed before making my decision.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"
@@ -166,13 +166,13 @@
     },
     {
         "id": "12",
-        "category": "yoga",
-        "title": "Customer Service!",
-        "name": "Elizabeth A.",
+        "category": "electronics",
+        "title": "Great Experience with Apple Products!",
+        "name": "Nissanka P.",
         "avatar": "/images/avatar/3.png",
-        "date": "November 13, 2023",
-        "address": "Manchester, UK",
-        "description": "The products are always top-quality, and the staff is incredibly friendly and helpful",
+        "date": "January 13, 2024",
+        "address": "Kaluthara, Sri Lanka",
+        "description": "The team at this Apple store was amazing. They walked me through all the features of the AirPods Max, and I couldn’t be happier with my purchase.",
         "images": [
             "/images/product/1000x1000.png",
             "/images/product/1000x1000.png"

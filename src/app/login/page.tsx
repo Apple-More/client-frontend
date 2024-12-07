@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <>
       <div id="header" className="relative w-full">
-        <MenuOne props="bg-transparent" />
+        <MenuOne props="bg-white" />
         <Breadcrumb heading="Login" subHeading="Login" />
       </div>
       <div className="login-block md:py-20 py-10">
