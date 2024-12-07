@@ -89,7 +89,7 @@ const MenuOne: React.FC<Props> = ({ props }) => {
                 href={"/"}
                 className="flex items-center max-lg:absolute max-lg:left-1/2 max-lg:-translate-x-1/2"
               >
-                <div className="heading4">Applemore</div>
+                <div className="heading4">AppleMore</div>
               </Link>
               <div className="menu-main h-full max-lg:hidden">
                 <ul className="flex items-center gap-8 h-full">

@@ -16,7 +16,7 @@ const serverTimeLeft: CountdownTimeType = countdownTime();
 const instrument = Instrument_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Applemore | Top Apple Products Dealer in Sri Lanka",
+  title: "AppleMore | Top Apple Products Dealer in Sri Lanka",
   description: "Top Apple Products Dealer in Sri Lanka",
 };
 

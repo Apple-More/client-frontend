@@ -23,7 +23,6 @@ export default function Home() {
         <SliderOne />
       </div>
       <WhatNewOne data={productData} start={0} limit={4} />
-      <TabFeatures data={productData} start={0} limit={6} />
       <Testimonial data={testimonialData} limit={6} />
       <Benefit props="md:py-20 py-10" />
       <Footer />

@@ -34,14 +34,18 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
   const { openQuickview } = useModalQuickviewContext();
   const router = useRouter();
 
+  const formatPrice = (price: number) => {
+    return price.toLocaleString("en-LK", {
+      style: "currency",
+      currency: "LKR",
+      minimumFractionDigits: 0,
+    });
+  };
+
   const handleActiveSize = (item: string) => {
     setActiveSize(item);
   };
 
-  const handleDetailProduct = (productId: string) => {
-    // redirect to shop with category selected
-    router.push(`/product/default?id=${productId}`);
-  };
 
   let percentSale = Math.floor(100 - (data.price / data.originPrice) * 100);
   let percentSold = Math.floor((data.sold / data.quantity) * 100);
@@ -50,21 +54,18 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
     <>
       {type === "grid" ? (
         <div className="product-item grid-type ml-16 ">
-          <div
-            onClick={() => handleDetailProduct(data.id)}
-            className="product-main cursor-pointer block"
-          >
+          <div className="product-main cursor-pointer block">
             <div className="product-thumb bg-white relative overflow-hidden rounded-2xl">
               <div className="product-img w-[200px] h-[200px] aspect-[3/4] ">
                 <Image
                         src={
-                           data.images[0].imageUrl
+                           data.images[0]
                         }
                         width={180}
                         height={180}
                         alt={data.name}
                         priority={true}
-                        className="w-full h-full object-cover duration-700"
+                        className="w-full h-full object-scale-down duration-700"
                  />
               </div>
 
@@ -76,12 +77,12 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
                 <div className="flex items-center justify-between gap-3 gap-y-1 flex-wrap mt-2"></div>
               </div>
               <div className="product-name text-title duration-300">
-                {data.productName}
+                {data.name}
               </div>
             </div>
 
             <div className="product-price-block flex items-center gap-2 flex-wrap mt-1 duration-300 relative z-[1]">
-              <div className="product-price text-title">Rs. 100</div>
+              <div className="product-price text-title">{formatPrice(data.price)}</div>
             </div>
           </div>
         </div>
