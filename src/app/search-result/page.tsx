@@ -7,11 +7,11 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import Footer from '@/components/Footer/Footer';
 import { ProductType } from '@/type/ProductType';
 import productData from '@/data/Product.json';
-import Product from '@/components/Product/Product';
+import ProductSearch from '@/components/Product/ProductSearch';
 import HandlePagination from '@/components/Other/HandlePagination';
 import ProductCategories from './ProductCategories';
 import PriceFilter from './PriceFilter';
-import { getProducts } from "../../services/ProductService";
+import { searchProduct } from "../../services/ProductService";
 
 
 const SearchResult = () => {
@@ -23,43 +23,11 @@ const SearchResult = () => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
-    const query = searchParams.get('query') || 'dress';
+    const query = searchParams.get('query') || '';
+    const category = searchParams.get('category') || '';
 
-    let filteredData = productData.filter((product) =>
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.type.toLowerCase().includes(query.toLowerCase())
-    );
-
-    if (filteredData.length === 0) {
-        filteredData = [
-            {
-                id: 'no-data',
-                category: 'no-data',
-                type: 'no-data',
-                name: 'no-data',
-                gender: 'no-data',
-                new: false,
-                sale: false,
-                rate: 0,
-                price: 0,
-                originPrice: 0,
-                brand: 'no-data',
-                sold: 0,
-                quantity: 0,
-                quantityPurchase: 0,
-                sizes: [],
-                variation: [],
-                thumbImage: [],
-                images: [],
-                description: 'no-data',
-                action: 'no-data',
-                slug: 'no-data',
-            },
-        ];
-    }
-
-    const pageCount = Math.ceil(filteredData.length / productsPerPage);
-    const currentProducts = filteredData.slice(offset, offset + productsPerPage);
+    const pageCount = Math.ceil(products.length / productsPerPage);
+    const currentProducts = products.slice(offset, offset + productsPerPage);
 
     const handleSearch = (value: string) => {
         router.push(`/search-result?query=${value}`);
@@ -70,10 +38,9 @@ const SearchResult = () => {
         setCurrentPage(selected);
     };
 
-
     const fetchProducts = async () => {
         try {
-            const response = await getProducts();
+            const response = await searchProduct(query, category);
 
             const products = response.data;
 
@@ -87,13 +54,10 @@ const SearchResult = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, [])
+    }, [query, category])
 
     return (
         <div>
-            {/* Top Navigation */}
-            <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
-
             {/* Header */}
             <div id="header" className="relative w-full">
                 <MenuOne props="bg-transparent" />
@@ -104,14 +68,14 @@ const SearchResult = () => {
                 {/* Sidebar */}
                 <div className="w-full lg:w-1/4 bg-white shadow-lg rounded-lg p-6 self-start">
                     {/* Product Categories */}
-                    <div className="mb-6">
+                    <div className="mb-2">
                         <h2 className="text-lg font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
                             Product Categories
                         </h2>
                         <ProductCategories />
                     </div>
 
-                    {/* Price Filter */}
+                    {/* Price Filter
                     <div>
                         <h2 className="text-lg font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
                             Price Filter
@@ -121,20 +85,17 @@ const SearchResult = () => {
                                 console.log('Filtered range:', range);
                             }}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Main Content */}
                 <div className="flex-1">
-                    <div className="shop-product lg:py-20 md:py-14 py-10">
+                    <div className="shop-product py-3">
                         <div className="container">
                             {/* Search Heading */}
                             <div className="heading flex flex-col items-center">
-                                <div className="heading4 text-center">
-                                    Found {filteredData.length} results for `{query}``
-                                </div>
                                 {/* Search Input */}
-                                <div className="input-block lg:w-1/2 sm:w-3/5 w-full md:h-[52px] h-[44px] sm:mt-8 mt-5">
+                                <div className="input-block lg:w-1/2 sm:w-3/5 w-full md:h-[52px] h-[44px] sm:mt-2 mt-2">
                                     <div className="w-full h-full relative">
                                         <input
                                             type="text"
@@ -158,9 +119,8 @@ const SearchResult = () => {
                             <div className="list-product-block relative md:pt-10 pt-6">
                                 <div className="heading6 ml-14">Product Search: {query}</div>
                                 <div className="list-product grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 sm:gap-[30px] gap-[20px] mt-5">
-                                    {products.map((item, index) =>
-                                            <Product key={index} data={item} type="grid" />
-
+                                    {currentProducts.map((item, index) =>
+                                        <ProductSearch key={index} data={item} type="grid" />
                                     )}
                                 </div>
 

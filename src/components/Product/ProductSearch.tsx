@@ -21,7 +21,7 @@ interface ProductProps {
   type: string;
 }
 
-const Product: React.FC<ProductProps> = ({ data, type }) => {
+const ProductSearch: React.FC<ProductProps> = ({ data, type }) => {
   const [activeColor, setActiveColor] = useState<string>("");
   const [activeSize, setActiveSize] = useState<string>("");
   const [openQuickShop, setOpenQuickShop] = useState<boolean>(false);
@@ -49,13 +49,16 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
   return (
     <>
       {type === "grid" ? (
-        <div className="product-item grid-type ml-16 ">
-          <div className="product-main cursor-pointer block">
+        <div className="product-item grid-type ml-16">
+          <div
+            className="product-main cursor-pointer block"
+            onClick={() => router.push(`/product/default?id=${data.id}`)}
+          >
             <div className="product-thumb bg-white relative overflow-hidden rounded-2xl">
               <div className="product-img w-[200px] h-[200px] aspect-[3/4] ">
                 <Image
                         src={
-                           data.images[0]
+                           data.images[0]?.imageUrl
                         }
                         width={180}
                         height={180}
@@ -67,13 +70,9 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
 
               <div className="list-action-icon flex items-center justify-center gap-2 absolute w-full bottom-3 z-[1] lg:hidden"></div>
             </div>
-            <div className="product-infor mt-4 lg:mb-7">
-              <div className="product-sold sm:pb-4 pb-2">
-    
-                <div className="flex items-center justify-between gap-3 gap-y-1 flex-wrap mt-2"></div>
-              </div>
+            <div className="product-infor">
               <div className="product-name text-title duration-300">
-                {data.name}
+                {data.productName}
               </div>
             </div>
 
@@ -89,4 +88,4 @@ const Product: React.FC<ProductProps> = ({ data, type }) => {
   );
 };
 
-export default Product;
+export default ProductSearch;

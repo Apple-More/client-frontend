@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getCategories } from "../../services/ProductService";
+import { useRouter } from 'next/navigation';
 
 interface Category {
   categoryName: string;
@@ -8,6 +9,8 @@ interface Category {
 export const ProductCategories: React.FC = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const router = useRouter();
 
   const fetchCategories = async () => {
     try{
@@ -37,13 +40,12 @@ export const ProductCategories: React.FC = () => {
 
   return (
     <div className="product-categories">
-      <h2 className="font-bold text-xl mb-4">Product Categories</h2>
       <ul className="list-none">
         {categories.map((category, index) => (
           <li key={index} className="mb-4">
             <div
               className="flex justify-between items-center cursor-pointer"
-              onClick={() => null}
+              onClick={() => {router.push(`/search-result?category=${category.categoryName}`)}}
             >
               <span
                 className={`${

@@ -14,16 +14,14 @@ import { getProductById } from '../../../services/ProductService';
 const ProductDefault = () => {
     const searchParams = useSearchParams()
     let productId = searchParams.get('id')
-    const [product, setProduct] = useState(null)
-
+    const [product, setProduct] = useState<ProductType | null>(null)
     
     const fetchProductById = async () => {
-        try{
-            if(!productId){
+        try {
+            if (!productId) {
                 return
             }
             const response = await getProductById(productId)
-
             setProduct(response.data)
         } catch (error) {
             console.log('Failed to fetch product data: ', error)
@@ -32,16 +30,16 @@ const ProductDefault = () => {
 
     useEffect(() => {
         fetchProductById()
-    }, [])
+    }, [productId])
 
     return (
         <>
             <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
                 <MenuOne props="bg-white" />
-                <BreadcrumbProduct data={productData} productPage='default' productId={productId} />
+                {/* <BreadcrumbProduct data={productData} productPage='default' productId={productId} /> */}
             </div>
-            <Default data={productData} productId={productId} />
+            {product && <Default product={product} />}
             <Footer />
         </>
     )
