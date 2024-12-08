@@ -5,19 +5,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { countdownTime } from '@/store/countdownTime';
-
-
+import { AuthContext } from '@/context/AuthContext';
+import { getCartItems } from '@/services/CartService';
 
 const OrderDetails = () => {
     const [timeLeft, setTimeLeft] = useState(countdownTime());
     const router = useRouter();
-    const { cartState, updateCart } = useCart();
-
-    const [totalCart, setTotalCart] = useState(0);
-    const [discountCart, setDiscountCart] = useState(0);
-    const [shipCart, setShipCart] = useState(30);
-    const [applyCode, setApplyCode] = useState(0);
-    const moneyForFreeship = 150;
 
     useEffect(() => {
         // Update time left for countdown every second
@@ -27,115 +20,78 @@ const OrderDetails = () => {
         return () => clearInterval(timer);
     }, []);
 
-    useEffect(() => {
-        // Calculate total cart value dynamically
-        const total = cartState.cartArray.reduce(
-            (acc, item) => acc + item.price * item.quantity,
-            0
-        );
-        setTotalCart(total);
-
-        // Adjust shipping and discount based on totalCart
-        if (total < moneyForFreeship) {
-            setShipCart(30);
-        } else {
-            setShipCart(0);
-        }
-
-        if (total < applyCode) {
-            setApplyCode(0);
-            setDiscountCart(0);
-        }
-    }, [cartState.cartArray, applyCode, moneyForFreeship]);
-
-    const handleQuantityChange = (productId, newQuantity) => {
-        const itemToUpdate = cartState.cartArray.find(item => item.id === productId);
-        if (itemToUpdate) {
-            updateCart(productId, newQuantity, itemToUpdate.selectedSize, itemToUpdate.selectedColor);
-        }
-    };
-
-    const handleApplyCode = (minValue, discount) => {
-        if (totalCart >= minValue) {
-            setApplyCode(minValue);
-            setDiscountCart(discount);
-        } else {
-            alert(`Minimum order must be $${minValue}`);
-        }
-    };
-
-    const redirectToCheckout = () => {
-        router.push(`/checkout?discount=${discountCart}&ship=${shipCart}`);
-    };
-
     return (
-        <OrderSummary
-            cartState={cartState}
-            discount={discountCart}
-            ship={shipCart}
-            totalCart={totalCart}
-        />
+        <OrderSummary />
     );
 };
 
-const OrderSummary = ({ cartState, discount, ship, totalCart }) => {
+const OrderSummary = () => {
+    const [cartItems, setCartItems] = useState<any[]>([])
+    const [totalCart, setTotalCart] = useState(0);
+
+    const fetchCart = async () => {
+        try {
+            const res = await getCartItems('0f20620b-141a-4416-8831-9560d5bb954a');
+            console.log(res);
+
+            let total = 0;
+            res.data.forEach((item: any) => {
+                total += item.variantDetails.price * item.quantity;
+            });
+            setTotalCart(total);
+            setCartItems(res.data);
+        } catch (error) {
+            console.log('Failed to fetch cart data: ', error)
+        }
+    }
+
+    useEffect(() => {
+        fetchCart();
+    }, []);
+
+
+    const formatPrice = (price: number) => {
+        return price.toLocaleString("en-LK", {
+            style: "currency",
+            currency: "LKR",
+            minimumFractionDigits: 0,
+        });
+    };
+
     return (
         <div>
             <div className="checkout-block">
                 <div className="heading5 pb-3">Your Order</div>
                 <div className="list-product-checkout">
-                    {cartState.cartArray.length < 1 ? (
-                        <p className="text-button pt-3">No product in cart</p>
-                    ) : (
-                        cartState.cartArray.map(product => (
-                            <div
-                                key={product.id}
-                                className="item flex items-center justify-between w-full pb-5 border-b border-line gap-6 mt-5"
-                            >
+                    {cartItems && cartItems.map((product: any) => (
+                        <div key={product.id} className='item py-5 ml-8 flex items-center justify-between gap-3 border-b border-line'>
+                            <div className="infor flex items-center gap-3 w-full">
                                 <div className="bg-img w-[100px] aspect-square flex-shrink-0 rounded-lg overflow-hidden">
                                     <Image
-                                        src={product.thumbImage[0]}
-                                        width={500}
-                                        height={500}
-                                        alt="img"
-                                        className="w-full h-full"
+                                        src={product.variantDetails.product.images[0].imageUrl}
+                                        width={300}
+                                        height={300}
+                                        className='w-full h-full'
+                                        alt="product"
                                     />
                                 </div>
-                                <div className="flex items-center justify-between w-full">
-                                    <div>
-                                        <div className="name text-title">{product.name}</div>
-                                        <div className="caption1 text-secondary mt-2">
-                                            <span className="size capitalize">
-                                                {product.selectedSize || product.sizes[0]}
-                                            </span>
-                                            <span>/</span>
-                                            <span className="color capitalize">
-                                                {product.selectedColor || product.variation[0].color}
-                                            </span>
-                                        </div>
+                                <div className='w-full'>
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className="name text-button">{product.variantDetails.product.productName}</div>
                                     </div>
-                                    <div className="text-title">
-                                        <span className="quantity">{product.quantity}</span>
-                                        <span className="px-1">x</span>
-                                        <span>${product.price}.00</span>
+                                    <div className="flex items-center justify-between gap-1 mt-3 w-full">
+                                        <div className="">x {product.quantity}</div>
+                                        <div className="product-price text-title">{formatPrice(product.variantDetails.price)}</div>
                                     </div>
                                 </div>
                             </div>
-                        ))
-                    )}
-                </div>
-                <div className="discount-block py-5 flex justify-between border-b border-line">
-                    <div className="text-title">Discounts</div>
-                    <div className="text-title">-${discount}.00</div>
-                </div>
-                <div className="ship-block py-5 flex justify-between border-b border-line">
-                    <div className="text-title">Shipping</div>
-                    <div className="text-title">{ship === 0 ? 'Free' : `$${ship}.00`}</div>
+                        </div>
+                    ))}
                 </div>
                 <div className="total-cart-block pt-5 flex justify-between">
                     <div className="heading5">Total</div>
                     <div className="heading5 total-cart">
-                        ${totalCart - discount + ship}.00
+                        {formatPrice(totalCart)}.00
                     </div>
                 </div>
             </div>
