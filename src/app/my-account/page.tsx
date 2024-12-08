@@ -62,7 +62,7 @@ const MyAccount = () => {
                   </div>
                 </div>
               </div>
-              <div
+              {/* <div
                 className={`tab text-content overflow-hidden w-full p-7 border border-line rounded-xl ${
                   activeTab === "orders" ? "block" : "hidden"
                 }`}
@@ -72,7 +72,7 @@ const MyAccount = () => {
                   openDetail={openDetail}
                   setOpenDetail={setOpenDetail}
                 />
-              </div>
+              </div> */}
 
               <div
                 className={`tab_address text-content w-full p-7 border border-line rounded-xl ${
