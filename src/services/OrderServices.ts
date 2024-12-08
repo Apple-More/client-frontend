@@ -1,9 +1,9 @@
 import axiosInstance from "./AxiosInstances";
 import axios from "axios";
 
-export const getAllOrders = async () => {
+export const getRecentOrders = async (userId:string) => {
     try {
-        const response = await axiosInstance.get("/order-service/v1/");
+        const response = await axiosInstance.get(`/order-service/v1/user/${userId}`);
         return response;
     } catch (error) {
         if (axios.isAxiosError(error)) {
