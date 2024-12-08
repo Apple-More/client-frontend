@@ -5,3 +5,9 @@ export const addCartItem = async (cartItem: any) => {
 
     return response.data;
 }
+
+export const getCartItems = async (customer: any) => {
+    const response = await axiosInstance.get(`/cart-service/v1/customer/${customer}/cart-items`);
+
+    return response.data;
+}
