@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ProductType } from '@/type/ProductType'
 import Rate from '@/components/Other/Rate'
@@ -14,7 +14,11 @@ import { useModalWishlistContext } from '@/context/ModalWishlistContext'
 import { useCompare } from '@/context/CompareContext'
 import { useModalCompareContext } from '@/context/ModalCompareContext'
 import ModalSizeguide from '@/components/Modal/ModalSizeguide'
-
+import { addCartItem } from '@/services/CartService';
+import { useAuth } from '@/context/AuthContext';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
     product: ProductType
@@ -36,76 +40,52 @@ const ItemCard: React.FC<Props> = ({ product }) => {
     const { addToCompare, removeFromCompare, compareState } = useCompare();
     const { openModalCompare } = useModalCompareContext()
 
-    const percentSale = Math.floor(100 - ((product?.price / product?.originPrice) * 100))
+    const { user } = useAuth()
 
-    const handleOpenSizeGuide = () => {
-        setOpenSizeGuide(true);
+    const [quality, setQuality] = useState(1)
+    const [selectedVariant, setSelectedVariant] = useState<string | null>(null)
+
+    useEffect(() => {
+        console.log(quality, selectedVariant)
+    }, [selectedVariant] )
+
+    const handleIncreaseQuantity = () => {
+        setQuality(quality + 1);
     };
 
-    const handleCloseSizeGuide = () => {
-        setOpenSizeGuide(false);
+    const handleDecreaseQuantity = () => {
+        if (quality > 1) {
+            setQuality(quality - 1);
+        }
     };
 
     const handleSwiper = (swiper: SwiperCore) => {
         setThumbsSwiper(swiper);
     };
 
-    const handleActiveColor = (item: string) => {
-        setActiveColor(item)
-    }
-
-    const handleActiveSize = (item: string) => {
-        setActiveSize(item)
-    }
-
-    const handleIncreaseQuantity = () => {
-        product.quantityPurchase += 1
-        updateCart(product.id, product.quantityPurchase + 1, activeSize, activeColor);
-    };
-
-    const handleDecreaseQuantity = () => {
-        if (product.quantityPurchase > 1) {
-            product.quantityPurchase -= 1
-            updateCart(product.id, product.quantityPurchase - 1, activeSize, activeColor);
-        }
-    };
-
-    const handleAddToCart = () => {
-        if (!cartState.cartArray.find(item => item.id === product.id)) {
-            addToCart({ ...product });
-            updateCart(product.id, product.quantityPurchase, activeSize, activeColor)
-        } else {
-            updateCart(product.id, product.quantityPurchase, activeSize, activeColor)
-        }
-        openModalCart()
-    };
-
-    const handleAddToWishlist = () => {
-        if (wishlistState.wishlistArray.some(item => item.id === product.id)) {
-            removeFromWishlist(product.id);
-        } else {
-            addToWishlist(product);
-        }
-        openModalWishlist();
-    };
-
-    const handleAddToCompare = () => {
-        if (compareState.compareArray.length < 3) {
-            if (compareState.compareArray.some(item => item.id === product.id)) {
-                removeFromCompare(product.id);
-            } else {
-                addToCompare(product);
+    const handleAddToCart = async () => {
+        try{
+            const cartItem = {
+                product_variant_id: selectedVariant,
+                quantity: quality,
+                // customer_id: user?.userId
+                customer_id: '0f20620b-141a-4416-8831-9560d5bb954a'
             }
-        } else {
-            alert('Compare up to 3 products')
+
+            console.log('cartItem: ', cartItem)
+
+            const response = await addCartItem(cartItem)
+
+            toast.success('Item added to cart successfully!');
+
+            setQuality(1)
+            setSelectedVariant(null)
+        } catch(error) {
+            console.log('Failed to add to cart: ', error)
+            toast.error('Failed to add item to cart.');
         }
-        openModalCompare();
+        // openModalCart()
     };
-
-    const handleActiveTab = (tab: string) => {
-        setActiveTab(tab)
-    }
-
 
     const formatPrice = (price: number) => {
         return price.toLocaleString("en-LK", {
@@ -229,13 +209,13 @@ const ItemCard: React.FC<Props> = ({ product }) => {
                         <div className="list-color flex items-center gap-2 flex-wrap mt-3">
                             {product.variants.map((variant, index) => (
                                 <div
-                                    className={`color-item rounded-xl duration-300 p-3`}
+                                    className={`rounded-xl p-3 border ${selectedVariant === variant.id ? 'border-black' : 'border-outline'}`}
                                     key={index}
-                                    onClick={() => { null }}
+                                    onClick={() => { setSelectedVariant(variant.id) }}
                                 >
                                     {
                                         variant.attributes.map((variant_attribute, index) => (
-                                                <div>{variant_attribute.name} : {variant_attribute.value}</div>
+                                            <div key={index}>{variant_attribute.name} : {variant_attribute.value}</div>
                                         ))
                                     }
                                     <div>{formatPrice(variant.price)}</div>
@@ -252,7 +232,7 @@ const ItemCard: React.FC<Props> = ({ product }) => {
                                 onClick={handleDecreaseQuantity}
                                 className={`${product.quantityPurchase === 1 ? 'disabled' : ''} cursor-pointer`}
                             />
-                            <div className="body1 font-semibold">{product.quantityPurchase}</div>
+                            <div className="body1 font-semibold">{quality}</div>
                             <Icon.Plus
                                 size={20}
                                 onClick={handleIncreaseQuantity}
@@ -266,6 +246,7 @@ const ItemCard: React.FC<Props> = ({ product }) => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     )
 }

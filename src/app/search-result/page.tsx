@@ -74,18 +74,6 @@ const SearchResult = () => {
                         </h2>
                         <ProductCategories />
                     </div>
-
-                    {/* Price Filter
-                    <div>
-                        <h2 className="text-lg font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
-                            Price Filter
-                        </h2>
-                        <PriceFilter
-                            onFilter={(range: [number, number]) => {
-                                console.log('Filtered range:', range);
-                            }}
-                        />
-                    </div> */}
                 </div>
 
                 {/* Main Content */}
