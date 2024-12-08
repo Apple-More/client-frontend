@@ -134,9 +134,6 @@ const PaymentOption = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="block-button md:mt-10 mt-6">
-                            <button className="button-main w-full">Payment</button>
-                        </div>
                     </form>
                 </div>
             </div>

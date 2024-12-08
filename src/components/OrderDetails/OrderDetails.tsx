@@ -7,6 +7,9 @@ import { useCart } from '@/context/CartContext';
 import { countdownTime } from '@/store/countdownTime';
 import { AuthContext } from '@/context/AuthContext';
 import { getCartItems } from '@/services/CartService';
+import { createOrder } from '@/services/OrderServices';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OrderDetails = () => {
     const [timeLeft, setTimeLeft] = useState(countdownTime());
@@ -21,7 +24,10 @@ const OrderDetails = () => {
     }, []);
 
     return (
-        <OrderSummary />
+        <>
+            <OrderSummary />
+            <ToastContainer />
+        </>
     );
 };
 
@@ -58,6 +64,29 @@ const OrderSummary = () => {
         });
     };
 
+    const handlePlaceOrder = async () => {
+        try{
+            const order = {
+                order:{
+                    customer_id: '0f20620b-141a-4416-8831-9560d5bb954a',
+                    shipping_address_id:"ac7d5d1a-762c-451d-97ae-0233a24b279f",
+                    order_status: "payment_pending"
+                },
+                orderItems: cartItems.map((item: any) => ({
+                    variantId: item.variantDetails.id,
+                    quantity: item.quantity,
+                })),
+                total: totalCart
+            }
+
+            await createOrder(order);
+            toast.success('Order placed successfully!');
+        } catch (error) {
+            console.log('Failed to place order: ', error);
+            toast.error('Failed to place order.');
+        }
+    }
+
     return (
         <div>
             <div className="checkout-block">
@@ -93,6 +122,9 @@ const OrderSummary = () => {
                     <div className="heading5 total-cart">
                         {formatPrice(totalCart)}.00
                     </div>
+                </div>
+                <div className="block-button md:mt-10 mt-6">
+                    <button className="button-main w-full" onClick={handlePlaceOrder}>Place Order</button>
                 </div>
             </div>
         </div>
