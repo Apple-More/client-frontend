@@ -93,7 +93,7 @@ const MenuOne: React.FC<Props> = ({ props }) => {
                   </li>
                   <li className="h-full">
                     <Link
-                      href="/homepages/marketplace"
+                      href="/search-result"
                       className={`text-button-uppercase duration-300 h-full flex items-center justify-center ${
                         pathname.includes("/product/") ? "active" : ""
                       }`}
