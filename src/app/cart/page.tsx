@@ -1,15 +1,17 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+// import Image from 'next/image'
+// import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import TopNavOne from '@/components/Header/TopNav/TopNavOne'
 import MenuOne from '@/components/Header/Menu/MenuOne'
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb'
 import Footer from '@/components/Footer/Footer'
-import * as Icon from "@phosphor-icons/react/dist/ssr";
+// import * as Icon from "@phosphor-icons/react/dist/ssr";
 import { useCart } from '@/context/CartContext'
 import { countdownTime } from '@/store/countdownTime'
+import OrderSummary from '@/components/OrderSummary/OrderSummary'
+import OrderDetails from '@/components/OrderDetails/OrderDetails'
 
 const Cart = () => {
     const [timeLeft, setTimeLeft] = useState(countdownTime());
@@ -25,16 +27,16 @@ const Cart = () => {
 
     const { cartState, updateCart, removeFromCart } = useCart();
 
-    const handleQuantityChange = (productId: string, newQuantity: number) => {
-        // Tìm sản phẩm trong giỏ hàng
-        const itemToUpdate = cartState.cartArray.find((item) => item.id === productId);
+    // const handleQuantityChange = (productId: string, newQuantity: number) => {
+    //     // Tìm sản phẩm trong giỏ hàng
+    //     const itemToUpdate = cartState.cartArray.find((item) => item.id === productId);
 
-        // Kiểm tra xem sản phẩm có tồn tại không
-        if (itemToUpdate) {
-            // Truyền giá trị hiện tại của selectedSize và selectedColor
-            updateCart(productId, newQuantity, itemToUpdate.selectedSize, itemToUpdate.selectedColor);
-        }
-    };
+    //     // Kiểm tra xem sản phẩm có tồn tại không
+    //     if (itemToUpdate) {
+    //         // Truyền giá trị hiện tại của selectedSize và selectedColor
+    //         updateCart(productId, newQuantity, itemToUpdate.selectedSize, itemToUpdate.selectedColor);
+    //     }
+    // };
 
     let moneyForFreeship = 150;
     let [totalCart, setTotalCart] = useState<number>(0)
@@ -44,14 +46,14 @@ const Cart = () => {
 
     cartState.cartArray.map(item => totalCart += item.price * item.quantity)
 
-    const handleApplyCode = (minValue: number, discount: number) => {
-        if (totalCart > minValue) {
-            setApplyCode(minValue)
-            setDiscountCart(discount)
-        } else {
-            alert(`Minimum order must be ${minValue}$`)
-        }
-    }
+    // const handleApplyCode = (minValue: number, discount: number) => {
+    //     if (totalCart > minValue) {
+    //         setApplyCode(minValue)
+    //         setDiscountCart(discount)
+    //     } else {
+    //         alert(`Minimum order must be ${minValue}$`)
+    //     }
+    // }
 
     if (totalCart < applyCode) {
         applyCode = 0
@@ -66,11 +68,11 @@ const Cart = () => {
         shipCart = 0
     }
 
-    const redirectToCheckout = () => {
-        router.push(`/checkout?discount=${discountCart}&ship=${shipCart}`)
-    }
+    // const redirectToCheckout = () => {
+    //     router.push(`/checkout?discount=${discountCart}&ship=${shipCart}`)
+    // }
 
-    return (
+    return (    
         <>
             <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
@@ -81,14 +83,14 @@ const Cart = () => {
                 <div className="container">
                     <div className="content-main flex justify-between max-xl:flex-col gap-y-8">
                         <div className="xl:w-2/3 xl:pr-3 w-full">
-                            <div className="time bg-green py-3 px-5 flex items-center rounded-lg">
+                            {/* <div className="time bg-green py-3 px-5 flex items-center rounded-lg">
                                 <div className="heding5">🔥</div>
                                 <div className="caption1 pl-2">Your cart will expire in
                                     <span className="min text-red text-button fw-700"> {timeLeft.minutes}:{timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}</span>
                                     <span> minutes! Please checkout now before your items sell out!</span>
                                 </div>
-                            </div>
-                            <div className="heading banner mt-5">
+                            </div> */}
+                            {/* <div className="heading banner mt-5">
                                 <div className="text">Buy
                                     <span className="text-button"> $<span className="more-price">{moneyForFreeship - totalCart > 0 ? (<>{moneyForFreeship - totalCart}</>) : (0)}</span>.00 </span>
                                     <span>more to get </span>
@@ -100,9 +102,11 @@ const Cart = () => {
                                         style={{ width: totalCart <= moneyForFreeship ? `${(totalCart / moneyForFreeship) * 100}%` : `100%` }}
                                     ></div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="list-product w-full sm:mt-7 mt-5">
-                                <div className='w-full'>
+                                <OrderDetails/>
+                                
+                                {/* <div className='w-full'>
                                     <div className="heading bg-surface bora-4 pt-4 pb-4">
                                         <div className="flex">
                                             <div className="w-1/2">
@@ -177,16 +181,16 @@ const Cart = () => {
                                             ))
                                         )}
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
-                            <div className="input-block discount-code w-full h-12 sm:mt-7 mt-5">
+                            {/* <div className="input-block discount-code w-full h-12 sm:mt-7 mt-5">
                                 <form className='w-full h-full relative'>
                                     <input type="text" placeholder='Add voucher discount' className='w-full h-full bg-surface pl-4 pr-14 rounded-lg border border-line' required />
                                     <button className='button-main absolute top-1 bottom-1 right-1 px-5 rounded-lg flex items-center justify-center'>Apply Code
                                     </button>
                                 </form>
-                            </div>
-                            <div className="list-voucher flex items-center gap-5 flex-wrap sm:mt-7 mt-5">
+                            </div> */}
+                            {/* <div className="list-voucher flex items-center gap-5 flex-wrap sm:mt-7 mt-5">
                                 <div className={`item ${applyCode === 200 ? 'bg-green' : ''} border border-line rounded-lg py-2`}>
                                     <div className="top flex gap-10 justify-between px-3 pb-2 border-b border-dashed border-line">
                                         <div className="left">
@@ -247,11 +251,19 @@ const Cart = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
+
+
+
+
+
+
                         <div className="xl:w-1/3 xl:pl-12 w-full">
+                        
                             <div className="checkout-block bg-surface p-6 rounded-2xl">
-                                <div className="heading5">Order Summary</div>
+                            <OrderSummary/>
+                                {/* <div className="heading5">Order Summary</div>
                                 <div className="total-block py-5 flex justify-between border-b border-line">
                                     <div className="text-title">Subtotal</div>
                                     <div className="text-title">$<span className="total-product">{totalCart}</span><span>.00</span></div>
@@ -323,9 +335,9 @@ const Cart = () => {
                                 <div className="block-button flex flex-col items-center gap-y-4 mt-5">
                                     <div className="checkout-btn button-main text-center w-full" onClick={redirectToCheckout}>Process To Checkout</div>
                                     <Link className="text-button hover-underline" href={"/shop/breadcrumb1"}>Continue shopping</Link>
-                                </div>
+                                </div> */}
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div >
